@@ -59,7 +59,7 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		alive:true,
 		ablets:0,
 		windowWidth:0,
-		windowHeight:0, 
+		windowHeight:0,
 		color:color,
 		imgWidth:0,
 		imgHeight:0,
@@ -202,7 +202,6 @@ function encodeHTML(s) {
 
 io.on('connection', function(socket){
 	//var current_socket_id = socket.id;
-	console.log("a user connected: " + socket.id);
 	//console.log('a user connected: ' + socket);
 
 	io.sockets.emit('connected', "Someone connected.");
@@ -212,6 +211,12 @@ io.on('connection', function(socket){
 	//console.log("Before: players.length: " + players.length + ", playersForKillCounter.length: " + playersForKillCounter.length);
 	makePlayer(50, 50, 0, socket.id, myColor);
 	//console.log("After: players.length: " + players.length + ", playersForKillCounter.length: " + playersForKillCounter.length);
+
+	console.log("a user connected: " + socket.id);
+	socket.on('username', function(message) {
+		players[getPlayerById(socket.id)].username = message;
+		console.log("username of socket.id " + socket.id + ": " + message);
+	});
 
 	socket.on('disconnect', function(){
 		players.splice(getPlayerById(socket.id),1);
@@ -229,7 +234,7 @@ io.on('connection', function(socket){
     	playersForKillCounter.clean(undefined);
     	console.log("After: players.length: " + players.length + ", playersForKillCounter.length: " + playersForKillCounter.length);
 	});
-	
+
 	socket.on('username', function(username) {
 		var index = getPlayerById(current_socket_id);
 		players[index].username = encodeHTML(username);
@@ -263,34 +268,3 @@ io.on('connection', function(socket){
 });
 
 setInterval(function(){updateFrame();}, 1000/FRAMES_PER_SECOND);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
