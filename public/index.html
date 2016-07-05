@@ -327,8 +327,8 @@
 					doneWithShop = true;
 					inYet = true;
 					goBackToGame = true;
-					alive = true;
-					//console.log('go back to game');
+					//alive = true;
+					console.log('go back to game');
 				}
 
 				function drawPlayer(x, y, color, index, rotation, imgWidth, imgHeight) {
@@ -460,6 +460,9 @@
 
 						if (data.players[i].alive == true) {
 							//document.getElementById("shop").style.display = "none";
+							if (i != myIndex) {
+								console.log("it's alive!");
+							}
 							drawPlayer(data.players[i].x, data.players[i].y, data.players[i].color, i, data.players[i].rotation, data.players[i].imgWidth, data.players[i].imgHeight);
 							for (var j = 0; j < data.players[i].bullets.length; j++) {
 								drawBullet(data.players[i].bullets[j], i);
@@ -468,13 +471,15 @@
 					}
 
 					if ((doneWithShop == true) && (alive == false)) {
+						console.log('im back!');
 						data.players[myIndex].alive = true;
+						alive = true;
 					}
 
 					//if ((data.players[myIndex].alive == false) && (goBackToGame == false) && (shopShown == false) && (inYet == true)) {
 					if (data.players[myIndex].alive == false) {
 						//console.log('dis person is dead');
-						//alive = false;
+						alive = false;
 						showShop();
 					}
 
