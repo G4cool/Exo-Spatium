@@ -179,7 +179,7 @@
 
 				//var minimapX = 200;
 				//var minimapY = 50;
-				var minimapRadius = 20;
+				var minimapRadius = 50;
 				var minimapXCenter = window.innerWidth - (minimapRadius + 10);
 				var minimapYCenter = minimapRadius + 10
 				//var minimapWidth = 150;
@@ -275,11 +275,11 @@
 
 					ctx.fillRect((window.innerWidth + 20), (window.innerHeight + 20), 200, 160);
 
+					var xDistFromCenterOfMinimap = minimapXCenter + x/500;
+					var yDistFromCenterOfMinimap = minimapYCenter + y/500;
+
 				    if (index == myIndex) {
 				    	ctx.save();
-
-				    	var xDistFromCenterOfMinimap = minimapXCenter + minimapRadius/2 + x/500;
-						var yDistFromCenterOfMinimap = minimapYCenter + minimapRadius/2 + y/500;
 						ctx.fillStyle = "FFFFFF";
 						ctx.fillRect(xDistFromCenterOfMinimap,yDistFromCenterOfMinimap,4,4);
 
@@ -303,9 +303,7 @@
 
 						correctX = x + myXFromCenter;
 						correctY = y + myYFromCenter;
-
-						var xDistFromCenterOfMinimap = minimapXCenter + minimapRadius/2 + x/500;
-						var yDistFromCenterOfMinimap = minimapYCenter + minimapRadius/2 + y/500;
+						
 						ctx.fillStyle = "FFFFFF";
 						ctx.fillRect(xDistFromCenterOfMinimap,yDistFromCenterOfMinimap,4,4);
 
