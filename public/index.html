@@ -232,10 +232,13 @@
 
 				var overYet = false;
 
-				var minimapX = 200;
-				var minimapY = 50;
-				var minimapWidth = 150;
-				var minimapHeight = 100;
+				//var minimapX = 200;
+				//var minimapY = 50;
+				var minimapRadius = 50;
+				var minimapXCenter = window.innerWidth - (minimapRadius + 10);
+				var minimapYCenter = minimapRadius + 10
+				//var minimapWidth = 150;
+				//var minimapHeight = 100;
 
 				//client keyboard and mouse states
 				var rightkeydown = false;
@@ -327,7 +330,6 @@
 					doneWithShop = true;
 					inYet = true;
 					goBackToGame = true;
-					//alive = true;
 					console.log('go back to game');
 				}
 
@@ -339,8 +341,8 @@
 				    if (index == myIndex) {
 				    	ctx.save();
 
-				    	var xDistFromCenterOfMinimap = minimapX + minimapWidth/2 + x/500;
-						var yDistFromCenterOfMinimap = minimapY + minimapHeight/2 + y/500;
+				    	var xDistFromCenterOfMinimap = minimapXCenter + minimapRadius/2 + x/500;
+						var yDistFromCenterOfMinimap = minimapYCenter + minimapRadius/2 + y/500;
 						ctx.fillStyle = "FFFFFF";
 						ctx.fillRect(xDistFromCenterOfMinimap,yDistFromCenterOfMinimap,4,4);
 
@@ -365,8 +367,8 @@
 						correctX = x + myXFromCenter;
 						correctY = y + myYFromCenter;
 
-						var xDistFromCenterOfMinimap = minimapX + minimapWidth/2 + x/500;
-						var yDistFromCenterOfMinimap = minimapY + minimapHeight/2 + y/500;
+						var xDistFromCenterOfMinimap = minimapXCenter + minimapRadius/2 + x/500;
+						var yDistFromCenterOfMinimap = minimapYCenter + minimapRadius/2 + y/500;
 						ctx.fillStyle = "FFFFFF";
 						ctx.fillRect(xDistFromCenterOfMinimap,yDistFromCenterOfMinimap,4,4);
 
@@ -406,7 +408,6 @@
 
 				function showShop() {
 					document.getElementById("overlay").style.display = "block";
-					//console.log('show the shop');
 					document.getElementById("shop").style.width = (window.innerWidth/2) + "px";
 					document.getElementById("shop").style.height = (window.innerHeight/2) + "px";
 					document.getElementById("shop").style.left = ((window.innerWidth/2) - (parseInt(document.getElementById("shop").style.width)/2));
@@ -453,15 +454,18 @@
 					document.getElementById("abletsAmount").innerHTML = "Ablets: " + data.players[myIndex].ablets;
 					document.getElementById("abletsAmountShop").innerHTML = "Ablets: " + data.players[myIndex].ablets;
 
+					// Draw minimap
+					//ctx.fillStyle = "#000000";
+					//ctx.fillRect(minimapX,minimapY,minimapWidth,minimapHeight);
+					//ctx.arc(minimapXCenter, minimapYCenter, minimapRadius, 0, 2 * Math.PI, false);
+					//ctx.arc(minimapXCenter, minimapYCenter, minimapRadius, 0, 2 * Math.PI, false);
 					ctx.fillStyle = "#000000";
-					ctx.fillRect(minimapX,minimapY,minimapWidth,minimapHeight);
+      				ctx.fill();
 
 					for(var i = 0; i < data.players.length; i++){
 
 						if (data.players[i].alive == true) {
-							//document.getElementById("shop").style.display = "none";
 							if (i != myIndex) {
-								console.log("it's alive!");
 							}
 							drawPlayer(data.players[i].x, data.players[i].y, data.players[i].color, i, data.players[i].rotation, data.players[i].imgWidth, data.players[i].imgHeight);
 							for (var j = 0; j < data.players[i].bullets.length; j++) {
@@ -471,21 +475,15 @@
 					}
 
 					if ((doneWithShop == true) && (alive == false)) {
-						console.log('im back!');
 						data.players[myIndex].alive = true;
 						alive = true;
 						sendData();
 					}
 
-					//if ((data.players[myIndex].alive == false) && (goBackToGame == false) && (shopShown == false) && (inYet == true)) {
 					if (data.players[myIndex].alive == false) {
-						//console.log('dis person is dead');
 						alive = false;
 						showShop();
 					}
-
-					//ctx.fillStyle = "#000000";
-					//ctx.fillRect(minimapX,minimapY,minimapWidth,minimapHeight);
 				});
 
 				socket.on('connected', function (message) {
