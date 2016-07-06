@@ -163,8 +163,6 @@ function updateFrame(){
 								players[playerIter].ablets += 10;
 								playersForKillCounter[playerIter].killCounter++;
 								players[j].alive = false;
-								//io.sockets.connected[players[j].socket_id].emit('killed', 'You have been killed. Avenge yourself!');
-								//delete players[j];
 								delete players[playerIter].bullets[i];
 							}
 						}
@@ -201,20 +199,15 @@ function encodeHTML(s) {
 }
 
 io.on('connection', function(socket){
-	//var current_socket_id = socket.id;
-	//console.log('a user connected: ' + socket);
-
 	io.sockets.emit('connected', "Someone connected.");
 
 	var myColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
-	//console.log("Before: players.length: " + players.length + ", playersForKillCounter.length: " + playersForKillCounter.length);
 	makePlayer(50, 50, 0, socket.id, myColor);
-	//console.log("After: players.length: " + players.length + ", playersForKillCounter.length: " + playersForKillCounter.length);
 
 	console.log("a user connected: " + socket.id);
 	socket.on('username', function(message) {
-		players[getPlayerById(socket.id)].username = message;
+		players[getPlayerById(socket.id)].username = encodeHTML(message);
 		console.log("username of socket.id " + socket.id + ": " + message);
 	});
 
@@ -223,29 +216,8 @@ io.on('connection', function(socket){
 		playersForKillCounter.splice(getPlayerByIdTwo(socket.id),1);
 	});
 
-	/*
-	socket.on('disconnect', function(){
-		console.log("Before: players.length: " + players.length + ", playersForKillCounter.length: " + playersForKillCounter.length);
-		console.log("should delete player " + getPlayerById(current_socket_id));
-    	delete players[getPlayerById(current_socket_id)];
-    	players.clean(undefined);
-    	console.log("should delete player " + getPlayerByIdTwo(current_socket_id));
-    	delete playersForKillCounter[getPlayerByIdTwo(current_socket_id)];
-    	playersForKillCounter.clean(undefined);
-    	console.log("After: players.length: " + players.length + ", playersForKillCounter.length: " + playersForKillCounter.length);
-	});
-
-	socket.on('username', function(username) {
-		var index = getPlayerById(current_socket_id);
-		players[index].username = encodeHTML(username);
-		playersForKillCounter[index].username = encodeHTML(username);
-		console.log("username: " + username);
-	});
-	*/
-
 	socket.on('user_input_state', function(data){
 		try {
-			//if(typeof players[index] !== 'undefined'){
 			var index = getPlayerById(socket.id);
 			io.sockets.connected[socket.id].emit('yourIndex', index);
 			players[index].keypresses.isLeftPressed = data[0];
