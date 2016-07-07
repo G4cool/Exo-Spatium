@@ -68,6 +68,11 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		rotation:startRotation,
 		socket_id:mySocketId,
 		bullets:[],
+		singleShot:true,
+		doubleShot:false,
+		tripleShot:false,
+		quadrupleShot:false,
+		quintupleShot:false,
 		keypresses:[isLeftPressed, isRightPressed, isUpPressed, isDownPressed, isSpacePressed],
 		rotate:function(rotateLeft) { //rotateLeft is a boolean. If it's true, then the tank will rotate left, otherwise right
 			this.rotation += (rotateLeft ? TANK_ROTATION_SPEED : -TANK_ROTATION_SPEED)
@@ -206,7 +211,7 @@ io.on('connection', function(socket){
 	makePlayer(50, 50, 0, socket.id, myColor);
 
 	console.log("a user connected: " + socket.id);
-	socket.on('username', function(message) {
+		socket.on('username', function(message) {
 		players[getPlayerById(socket.id)].username = encodeHTML(message);
 		console.log("username of socket.id " + socket.id + ": " + message);
 	});
@@ -214,6 +219,40 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		players.splice(getPlayerById(socket.id),1);
 		playersForKillCounter.splice(getPlayerByIdTwo(socket.id),1);
+	});
+
+	var indexForShots = getPlayerById(socket.id);
+
+	socket.on('boughtDoubleShot', function() {
+		players[indexForShots].singleShot = false;
+		players[indexForShots].doubleShot = true;
+		players[indexForShots].tripleShot = false;
+		players[indexForShots].quadrupleShot = false;
+		players[indexForShots].quintupleShot = false;
+	});
+
+	socket.on('boughtTripleShot', function() {
+		players[indexForShots].singleShot = false;
+		players[indexForShots].doubleShot = false;
+		players[indexForShots].tripleShot = true;
+		players[indexForShots].quadrupleShot = false;
+		players[indexForShots].quintupleShot = false;
+	});
+
+	socket.on('boughtQuadrupleShot', function() {
+		players[indexForShots].singleShot = false;
+		players[indexForShots].doubleShot = false;
+		players[indexForShots].tripleShot = false;
+		players[indexForShots].quadrupleShot = true;
+		players[indexForShots].quintupleShot = false;
+	});
+
+	socket.on('boughtQuintupleShot', function() {
+		players[indexForShots].singleShot = false;
+		players[indexForShots].doubleShot = false;
+		players[indexForShots].tripleShot = false;
+		players[indexForShots].quadrupleShot = false;
+		players[indexForShots].quintupleShot = true;
 	});
 
 	socket.on('user_input_state', function(data){

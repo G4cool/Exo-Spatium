@@ -64,6 +64,34 @@
 			vertical-align: middle;
 		}
 
+		#buyDoubleShot:hover {
+			transition: 0.4s ease;
+			-webkit-transform: scale(1.3);
+            -ms-transform: scale(1.3);
+            transform: scale(1.3);
+		}
+
+		#buyTripleShot:hover {
+			transition: 0.4s ease;
+			-webkit-transform: scale(1.3);
+            -ms-transform: scale(1.3);
+            transform: scale(1.3);
+		}
+
+		#buyQuadrupleShot:hover {
+			transition: 0.4s ease;
+			-webkit-transform: scale(1.3);
+            -ms-transform: scale(1.3);
+            transform: scale(1.3);
+		}
+
+		#buyQuintupleShot:hover {
+			transition: 0.4s ease;
+			-webkit-transform: scale(1.3);
+            -ms-transform: scale(1.3);
+            transform: scale(1.3);
+		}
+
     </style>
 </head>
 <body>
@@ -312,6 +340,22 @@
 					console.log('go back to game');
 				}
 
+				function buyDoubleShot() {
+					socket.emit('boughtDoubleShot',"They bought double shot.");
+				}
+
+				function buyTripleShot() {
+					socket.emit('boughtTripleShot',"They bought triple shot.");
+				}
+
+				function buyQuadrupleShot() {
+					socket.emit('boughtQuadrupleShot',"They bought quadruple shot.");
+				}
+
+				function buyQuintupleShot() {
+					socket.emit('boughtQuintupleShot',"They bought quintuple shot.");
+				}
+
 				function drawPlayer(x, y, color, index, rotation, imgWidth, imgHeight) {
 					ctx.save();
 
@@ -434,11 +478,8 @@
 					// Draw minimap
 					ctx.beginPath();
 					ctx.fillStyle = "#000000";
-					//ctx.fillRect(minimapX,minimapY,minimapWidth,minimapHeight);
-					//ctx.arc(minimapXCenter, minimapYCenter, minimapRadius, 0, 2 * Math.PI, false);
 					ctx.arc(minimapXCenter, minimapYCenter, minimapRadius, 0, 2 * Math.PI, false);
 					ctx.closePath();
-					//ctx.fillStyle = "#000000";
       				ctx.fill();
 
 					for(var i = 0; i < data.players.length; i++){
@@ -501,10 +542,10 @@
 		        		</div>
 						<ul class="collection with-header blue z-depth-0 lighten-1">
 					        <li class="collection-header blue z-depth-0 lighten-1"><h4>Shop</h4></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Double Shot: 100<a href="#!" class="secondary-content"><i class="material-icons dp48">shopping_cart</i></a></div></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Triple Shot: 200<a href="#!" class="secondary-content"><i class="material-icons dp48">shopping_cart</i></a></div></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Quadruple Shot: 300<a href="#!" class="secondary-content"><i class="material-icons dp48">shopping_cart</i></a></div></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Quintuple Shot: 400<a href="#!" class="secondary-content"><i class="material-icons dp48">shopping_cart</i></a></div></li>
+					        <li class="collection-item blue z-depth-0 lighten-1"><div>Double Shot: 100<a href="#!" class="secondary-content"><i id="buyDoubleShot" onclick="buyDoubleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
+					        <li class="collection-item blue z-depth-0 lighten-1"><div>Triple Shot: 200<a href="#!" class="secondary-content"><i id="buyTripleShot" onclick="buyTripleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
+					        <li class="collection-item blue z-depth-0 lighten-1"><div>Quadruple Shot: 300<a href="#!" class="secondary-content"><i id="buyQuadrupleShot" onclick="buyQuadrupleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
+					        <li class="collection-item blue z-depth-0 lighten-1"><div>Quintuple Shot: 400<a href="#!" class="secondary-content"><i id="buyQuintupleShot" onclick="buyQuintupleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
 					    </ul>
 						<button id="shopButton" onclick="finishShop()" class="btn blue z-depth-0 lighten-1 waves-effect waves-light" type="submit" name="action">Go back to game
     						<i class="material-icons right">send</i>
