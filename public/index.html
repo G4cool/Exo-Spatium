@@ -277,7 +277,12 @@
                                 '-o-filter': 'blur(2px)',
                                 '-ms-filter': 'blur(2px)',
                     });
+                    setTimeout(function(){
+                    	$("#setUpDiv").fadeOut(1000);
+                    	$("#loadingAnimation").fadeOut(250);
+                    }, 1000);
 					setTimeout(function(){
+						document.getElementById("setUpDiv").style.display = "none";
 						document.getElementById("loadingAnimation").style.display = "none";
 						username = document.getElementById("usernameTextbox").value;
 						socket.emit('username', username);
