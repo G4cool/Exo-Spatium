@@ -269,13 +269,6 @@
 
 				function updateLobbyClient(){
 					document.getElementById("loadingAnimation").style.display = "block";
-					/*
-					document.getElementById("setUpDiv").css('filter',blur(2px));
-					document.getElementById("setUpDiv").css('webkitFilter',blur(2px));
-					document.getElementById("setUpDiv").css('mozFilter',blur(2px));
-					document.getElementById("setUpDiv").css('oFilter',blur(2px));
-					document.getElementById("setUpDiv").css('msFilter',blur(2px));
-					*/
 					$('#setUpDiv').css({
                                 'filter': 'blur(2px)',
                                 '-webkit-filter': 'blur(2px)',
@@ -287,13 +280,6 @@
 						document.getElementById("loadingAnimation").style.display = "none";
 						username = document.getElementById("usernameTextbox").value;
 						socket.emit('username', username);
-						/*
-						document.getElementById("setUpDiv").css('filter',blur(0px));
-						document.getElementById("setUpDiv").css('webkitFilter',blur(0px));
-						document.getElementById("setUpDiv").css('mozFilter',blur(0px));
-						document.getElementById("setUpDiv").css('oFilter',blur(0px));
-						document.getElementById("setUpDiv").css('msFilter',blur(0px));
-						*/
 						$('#setUpDiv').css({
 	                                'filter': 'blur(0px)',
 	                                '-webkit-filter': 'blur(0px)',
