@@ -85,7 +85,8 @@
         	</div>
       	</div>
     </div>
-    <div class="preloader-wrapper big active">
+    <!--MAKE CUSTOM ANIMATION!-->
+    <div id="loadingAnimation" class="preloader-wrapper big active">
 	    <div class="spinner-layer spinner-blue-only">
 	      	<div class="circle-clipper left">
 	        	<div class="circle"></div>
@@ -279,8 +280,9 @@
 				}
 
 				function finishShop() {
-					document.getElementById("overlay").style.display = "none";
-					document.getElementById("shop").style.display = "none";
+					//document.getElementById("overlay").style.display = "none";
+					//document.getElementById("shop").style.display = "none";
+					document.getElementById("loadingAnimation").style.display = "block";
 					doneWithShop = true;
 					inYet = true;
 					goBackToGame = true;
