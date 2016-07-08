@@ -417,12 +417,13 @@
 						myBulletXFromCenter = (window.innerWidth/2) - myX;
 						myBulletYFromCenter = (window.innerHeight/2) - myY;
 						ctx.arc((bullet.x + myBulletXFromCenter + shipImg.width/2), (bullet.y + myBulletYFromCenter + shipImg.height/2), radius, 0, 2 * Math.PI);
+						ctx.fillStyle = "#0099FF";
 					} else {
 						correctBulletX = bullet.x + myXFromCenter;
 						correctBulletY = bullet.y + myYFromCenter;
 						ctx.arc((correctBulletX + shipImg.width/2), (correctBulletY + shipImg.height/2), radius, 0, 2 * Math.PI);
+						ctx.fillStyle = 'white';
 					}
-					ctx.fillStyle = 'white';
 					ctx.fill();
 				}
 

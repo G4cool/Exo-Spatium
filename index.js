@@ -20,7 +20,7 @@ const FRAMES_PER_SECOND = 60;
 
 const SHIP_SPEED = 10;
 const TANK_ROTATION_SPEED = Math.PI * -.01;
-const BULLET_SPEED = 20;
+const BULLET_SPEED = 4;
 
 const hitRadius = 20;
 
@@ -141,7 +141,7 @@ function updateFrame(){
 				players[playerIter].x -= SHIP_SPEED;
 			}
 			if (players[playerIter].keypresses.isSpacePressed) {
-				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/4) {
+				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/50) {
 					slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
 					players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY, slope);
 					players[playerIter].timeBetweenBullets = 0;
@@ -153,12 +153,22 @@ function updateFrame(){
 					if (players[playerIter].bullets[i].time > FRAMES_PER_SECOND*4) {
 						delete players[playerIter].bullets[i];
 					} else {
-						if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
-							players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
-							players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+						if (players[playerIter].username == "FUCK U") {
+							if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
+								players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+								players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+							} else {
+								players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+								players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+							}
 						} else {
-							players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
-							players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+							if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
+								players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+								players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+							} else {
+								players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+								players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+							}
 						}
 						// Collision detection
 						for (var j = 0; j < players.length; j++) {
