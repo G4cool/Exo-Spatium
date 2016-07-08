@@ -57,7 +57,7 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		mouseY:0,
 		username:"",
 		alive:true,
-		ablets:0,
+		ablets:1000000,
 		windowWidth:0,
 		windowHeight:0,
 		color:color,
@@ -68,6 +68,7 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		rotation:startRotation,
 		socket_id:mySocketId,
 		bullets:[],
+		numShots:1,
 		singleShot:true,
 		doubleShot:false,
 		tripleShot:false,
@@ -142,8 +143,12 @@ function updateFrame(){
 			}
 			if (players[playerIter].keypresses.isSpacePressed) {
 				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/50) {
-					slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
-					players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY, slope);
+					for (var angleShoot1 = 0; angleShoot1 < players[playerIter].numShots; angleShoot1++) {
+						var startingAngle = -5 * (players[playerIter].numShots - 1);
+						slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
+						var correctSlope = Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1)));
+						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY, correctSlope);
+					}
 					players[playerIter].timeBetweenBullets = 0;
 				}
 			}
@@ -153,6 +158,51 @@ function updateFrame(){
 					if (players[playerIter].bullets[i].time > FRAMES_PER_SECOND*4) {
 						delete players[playerIter].bullets[i];
 					} else {
+						//if (players[playerIter].numShots == 1) {
+							if (players[playerIter].username == "FUCK U") {
+								if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
+									players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+									players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+								} else {
+									players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+									players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * 40);
+								}
+							} else {
+								if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
+									players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+									players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+								} else {
+									players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+									players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+								}
+							}
+						/*
+						} else {
+							for (var angleShoot2 = 0; angleShoot2 < players[playerIter].numShots; angleShoot2++) {
+								// 1: 0 // 2: -5, 5 // 3: -10, 0, 10 // 4: -15, -5, 5, 15 // 5: -20, -10, 0, 10, 20 // Keep subtracting 5 for starting, and then add five for rest of angles in that players[playerIter].numShots
+								var startingAngle = -5 * (players[playerIter].numShots - 1);
+								// THIS MIGHT NOT WORK CUZ NOT ONE ANGLE, BUT USING COMPONENTS, MAYBE GET ANGLE FROM COMPONENTS AND GO THAT WAY??? OR SLOPE WHAT???
+								if (players[playerIter].username == "FUCK U") {
+									if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
+										players[playerIter].bullets[i].x -= ((Math.cos(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * 40);
+										players[playerIter].bullets[i].y -= ((Math.sin(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * 40);
+									} else {
+										players[playerIter].bullets[i].x += ((Math.cos(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * 40);
+										players[playerIter].bullets[i].y += ((Math.sin(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * 40);
+									}
+								} else {
+									if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
+										players[playerIter].bullets[i].x -= ((Math.cos(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * BULLET_SPEED);
+										players[playerIter].bullets[i].y -= ((Math.sin(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * BULLET_SPEED);
+									} else {
+										players[playerIter].bullets[i].x += ((Math.cos(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * BULLET_SPEED);
+										players[playerIter].bullets[i].y += ((Math.sin(Math.atan(players[playerIter].bullets[i].slope)) + startingAngle) * BULLET_SPEED);
+									}
+								}
+							}
+						}
+						*/
+						/*
 						if (players[playerIter].username == "FUCK U") {
 							if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
 								players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * 40);
@@ -170,6 +220,7 @@ function updateFrame(){
 								players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
 							}
 						}
+						*/
 						// Collision detection
 						for (var j = 0; j < players.length; j++) {
 							if ((typeof players[j] !== 'undefined') && (players[j].alive == true) && (typeof players[playerIter].bullets[i] !== 'undefined') && (typeof players[j] !== 'undefined') && (players[playerIter].bullets[i].x > players[j].x - hitRadius) && (players[playerIter].bullets[i].x <= players[j].x + hitRadius) && (players[playerIter].bullets[i].y > players[j].y - hitRadius) && (players[playerIter].bullets[i].y <= players[j].y + hitRadius) && (j != playerIter)) {
@@ -234,6 +285,7 @@ io.on('connection', function(socket){
 	var indexForShots = getPlayerById(socket.id);
 
 	socket.on('boughtDoubleShot', function() {
+		players[indexForShots].numShots = 2;
 		players[indexForShots].singleShot = false;
 		players[indexForShots].doubleShot = true;
 		players[indexForShots].tripleShot = false;
@@ -242,6 +294,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('boughtTripleShot', function() {
+		players[indexForShots].numShots = 3;
 		players[indexForShots].singleShot = false;
 		players[indexForShots].doubleShot = false;
 		players[indexForShots].tripleShot = true;
@@ -250,6 +303,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('boughtQuadrupleShot', function() {
+		players[indexForShots].numShots = 4;
 		players[indexForShots].singleShot = false;
 		players[indexForShots].doubleShot = false;
 		players[indexForShots].tripleShot = false;
@@ -258,6 +312,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('boughtQuintupleShot', function() {
+		players[indexForShots].numShots = 5;
 		players[indexForShots].singleShot = false;
 		players[indexForShots].doubleShot = false;
 		players[indexForShots].tripleShot = false;
