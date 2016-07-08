@@ -145,8 +145,14 @@ function updateFrame(){
 				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/50) {
 					for (var angleShoot1 = 0; angleShoot1 < players[playerIter].numShots; angleShoot1++) {
 						var startingAngle = -5 * (players[playerIter].numShots - 1);
+						console.log("startingAngle: " + startingAngle);
 						slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
-						var correctSlope = Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1)));
+						var correctSlope;
+						if (players[playerIter].x <= players[playerIter].windowWidth/2) {
+							correctSlope = 1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))));
+						} else {
+							correctSlope = -1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))) + 180);
+						}
 						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY, correctSlope);
 					}
 					players[playerIter].timeBetweenBullets = 0;
