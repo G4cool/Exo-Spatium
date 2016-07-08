@@ -144,7 +144,7 @@ function updateFrame(){
 			if (players[playerIter].keypresses.isSpacePressed) {
 				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/50) {
 					for (var angleShoot1 = 0; angleShoot1 < players[playerIter].numShots; angleShoot1++) {
-						console.log("players[playerIter].numShots" + players[playerIter].numShots);
+						//console.log("players[playerIter].numShots" + players[playerIter].numShots);
 						var startingAngle = -5 * (players[playerIter].numShots - 1);
 						//console.log("startingAngle: " + startingAngle);
 						slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
@@ -157,7 +157,17 @@ function updateFrame(){
 						//console.log("correctAngle: " + correctAngle);
 						//var correctSlope = Math.tan(correctAngle);
 						//var correctAngle = Math.atan(slope);
-						var correctAngle = Math.atan2();
+						//var correctAngle = Math.atan2(((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX));
+						//console.log(Math.atan2(1 - players[playerIter].mouseY), (1 - players[playerIter].mouseX));
+						var calcY = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY);
+						console.log("players[playerIter].windowHeight/2: " + players[playerIter].windowHeight/2);
+						console.log("players[playerIter].mouseY: " + players[playerIter].mouseY);
+						var calcX = ((players[playerIter].windowWidth/2) - players[playerIter].mouseY);
+						//console.log(Math.atan2(-169,-235));
+						//console.log("calcY: " + calcY);
+						//console.log(Math.atan2(calcY,calcX));
+						var correctAngle = Math.atan2(calcY,calcX) * 180/Math.PI;
+						//onsole.log("correctAngle: " + correctAngle);
 						var correctSlope = Math.tan(correctAngle + (startingAngle + (10 * angleShoot1)));
 						/*
 						if (players[playerIter].x <= players[playerIter].windowWidth/2) {
