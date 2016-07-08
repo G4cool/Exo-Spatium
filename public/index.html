@@ -224,13 +224,11 @@
 
 				var overYet = false;
 
-				//var minimapX = 200;
-				//var minimapY = 50;
 				var minimapRadius = 50;
 				var minimapXCenter = window.innerWidth - (minimapRadius + 10);
-				var minimapYCenter = minimapRadius + 10
-				//var minimapWidth = 150;
-				//var minimapHeight = 100;
+				var minimapYCenter = minimapRadius + 10;
+				var minimapPlayerWidth = 4;
+				var minimapPlayerHeight = 4;
 
 				//client keyboard and mouse states
 				var rightkeydown = false;
@@ -363,11 +361,16 @@
 
 					var xDistFromCenterOfMinimap = minimapXCenter + x/500;
 					var yDistFromCenterOfMinimap = minimapYCenter + y/500;
+					var myXDistFromCenterOfMinimap;
+					var myYDistFromCenterOfMinimap;
 
 				    if (index == myIndex) {
 				    	ctx.save();
 						ctx.fillStyle = "FFFFFF";
-						ctx.fillRect(xDistFromCenterOfMinimap,yDistFromCenterOfMinimap,4,4);
+						ctx.fillRect((minimapXCenter - (minimapPlayerWidth/2)), (minimapYCenter - (minimapPlayerHeight/2)), minimapPlayerWidth, minimapPlayerHeight);
+
+						var myXDistFromCenterOfMinimap = minimapXCenter + x/500;
+						var myYDistFromCenterOfMinimap = minimapYCenter + y/500;
 
 				    	ctx.translate((window.innerWidth/2 + shipImg.width/2), (window.innerHeight/2 + shipImg.height/2));
 
@@ -390,8 +393,11 @@
 						correctX = x + myXFromCenter;
 						correctY = y + myYFromCenter;
 
+						var otherX = (x - myX)/500;
+						var otherY = (y - myY)/500;
+
 						ctx.fillStyle = "red";
-						ctx.fillRect(xDistFromCenterOfMinimap,yDistFromCenterOfMinimap,4,4);
+						ctx.fillRect((otherX + minimapXCenter - (minimapPlayerWidth/2)), (otherY + minimapYCenter - (minimapPlayerHeight/2)), minimapPlayerWidth, minimapPlayerHeight);
 
 						ctx.translate((correctX + shipImg.width/2), (correctY + shipImg.height/2));
 						ctx.rotate(rotation);
@@ -479,8 +485,18 @@
 					ctx.beginPath();
 					ctx.fillStyle = "#000000";
 					ctx.arc(minimapXCenter, minimapYCenter, minimapRadius, 0, 2 * Math.PI, false);
-					ctx.closePath();
       				ctx.fill();
+      				ctx.lineWidth = 1;
+      				ctx.strokeStyle = "#FFFFFF";
+      				ctx.stroke();
+      				ctx.closePath();
+
+      				ctx.beginPath();
+      				ctx.arc(minimapXCenter, minimapYCenter, minimapRadius/2, 0, 2 * Math.PI, false);
+      				ctx.lineWidth = 1;
+      				ctx.strokeStyle = "#FFFFFF";
+      				ctx.stroke();
+      				ctx.closePath();
 
 					for(var i = 0; i < data.players.length; i++){
 
