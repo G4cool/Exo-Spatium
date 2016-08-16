@@ -148,6 +148,7 @@ function updateFrame(){
 						var startingAngle = -5 * (players[playerIter].numShots - 1);
 						//console.log("startingAngle: " + startingAngle);
 						slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
+						console.log("slope: " + slope);
 						// I swapped x and y in the line below!!!!! FIX
 						//var correctAngle = Math.atan(players[playerIter].mouseX - players[playerIter].x)/(players[playerIter].mouseY - players[playerIter].y);
 						//var correctAngle = Math.atan2(players[playerIter].mouseY - players[playerIter].y, players[playerIter].mouseX - players[playerIter].x) * 180 / Math.PI;
@@ -160,22 +161,22 @@ function updateFrame(){
 						//var correctAngle = Math.atan2(((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX));
 						//console.log(Math.atan2(1 - players[playerIter].mouseY), (1 - players[playerIter].mouseX));
 						var calcY = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY);
-						console.log("players[playerIter].windowHeight/2: " + players[playerIter].windowHeight/2);
-						console.log("players[playerIter].mouseY: " + players[playerIter].mouseY);
+						//console.log("players[playerIter].windowHeight/2: " + players[playerIter].windowHeight/2);
+						//console.log("players[playerIter].mouseY: " + players[playerIter].mouseY);
 						var calcX = ((players[playerIter].windowWidth/2) - players[playerIter].mouseY);
 						//console.log(Math.atan2(-169,-235));
 						//console.log("calcY: " + calcY);
 						//console.log(Math.atan2(calcY,calcX));
 						var correctAngle = Math.atan2(calcY,calcX) * 180/Math.PI;
-						//onsole.log("correctAngle: " + correctAngle);
-						var correctSlope = Math.tan(correctAngle + (startingAngle + (10 * angleShoot1)));
-						/*
+						//console.log("correctAngle: " + correctAngle);
+						//var correctSlope = Math.tan(correctAngle + (startingAngle + (10 * angleShoot1))); STUFF?
+						///*
 						if (players[playerIter].x <= players[playerIter].windowWidth/2) {
 							correctSlope = 1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))));
 						} else {
-							correctSlope = -1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))) + (180);
+							correctSlope = -1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))) + (180));
 						}
-						*/
+						//*/
 						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY, correctSlope);
 					}
 					players[playerIter].timeBetweenBullets = 0;
