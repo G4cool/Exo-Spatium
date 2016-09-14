@@ -20,7 +20,7 @@ const FRAMES_PER_SECOND = 60;
 
 const SHIP_SPEED = 10;
 const TANK_ROTATION_SPEED = Math.PI * -.01;
-const BULLET_SPEED = 4;
+const BULLET_SPEED = 20;
 
 const hitRadius = 20;
 
@@ -78,10 +78,12 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		rotate:function(rotateLeft) { //rotateLeft is a boolean. If it's true, then the tank will rotate left, otherwise right
 			this.rotation += (rotateLeft ? TANK_ROTATION_SPEED : -TANK_ROTATION_SPEED)
 		},
-		makeBullet: function(x, y, playerX, playerY, mouseX, mouseY, slope) {
+		makeBullet: function(x, y, dx, dy, playerX, playerY, mouseX, mouseY, slope) {
 			var bullet = {
 				x:x,
 				y:y,
+				dx:dx,
+				dy:dy,
 				playerX:playerX,
 				playerY:playerY,
 				mouseX:mouseX,
@@ -142,13 +144,19 @@ function updateFrame(){
 				players[playerIter].x -= SHIP_SPEED;
 			}
 			if (players[playerIter].keypresses.isSpacePressed) {
-				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/50) {
+				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/4) { // Firerate
 					for (var angleShoot1 = 0; angleShoot1 < players[playerIter].numShots; angleShoot1++) {
 						//console.log("players[playerIter].numShots" + players[playerIter].numShots);
 						var startingAngle = -5 * (players[playerIter].numShots - 1);
 						//console.log("startingAngle: " + startingAngle);
 						slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
 						console.log("slope: " + slope);
+						var initialDy = players[playerIter].windowHeight/2 - players[playerIter].mouseY;
+						var initialDx = players[playerIter].windowWidth/2 - players[playerIter].mouseX;
+						var hypotenuse = Math.sqrt((initialDx*initialDx) + (initialDy*initialDy));
+						var factor = hypotenuse/BULLET_SPEED;
+						var dy = initialDy / factor;
+						var dx = initialDx / factor;
 						// I swapped x and y in the line below!!!!! FIX
 						//var correctAngle = Math.atan(players[playerIter].mouseX - players[playerIter].x)/(players[playerIter].mouseY - players[playerIter].y);
 						//var correctAngle = Math.atan2(players[playerIter].mouseY - players[playerIter].y, players[playerIter].mouseX - players[playerIter].x) * 180 / Math.PI;
@@ -172,12 +180,14 @@ function updateFrame(){
 						//var correctSlope = Math.tan(correctAngle + (startingAngle + (10 * angleShoot1))); STUFF?
 						///*
 						if (players[playerIter].x <= players[playerIter].windowWidth/2) {
-							correctSlope = 1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))));
+							//correctSlope = 1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))));
+							correctSlope = 1 * (Math.tan(((Math.atan2(((players[playerIter].windowWidth/2) - players[playerIter].mouseX),((players[playerIter].windowHeight/2) - players[playerIter].mouseY))) * 180/Math.PI) + (startingAngle + (10 * angleShoot1))));
 						} else {
-							correctSlope = -1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))) + (180));
+							//correctSlope = -1 * (Math.tan(Math.atan(slope) + (startingAngle + (10 * angleShoot1))) + (180));
+							correctSlope = -1 * (Math.tan(((Math.atan2(((players[playerIter].windowWidth/2) - players[playerIter].mouseX),((players[playerIter].windowHeight/2) - players[playerIter].mouseY))) * 180/Math.PI) + (startingAngle + (10 * angleShoot1))) + (180));
 						}
 						//*/
-						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY, correctSlope);
+						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, dx, dy, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY, correctSlope);
 					}
 					players[playerIter].timeBetweenBullets = 0;
 				}
@@ -198,13 +208,17 @@ function updateFrame(){
 									players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * 40);
 								}
 							} else {
-								if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
-									players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
-									players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
-								} else {
-									players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
-									players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
-								}
+								//if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
+									//players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+									//players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+									players[playerIter].bullets[i].x -= players[playerIter].bullets[i].dx;
+									players[playerIter].bullets[i].y -= players[playerIter].bullets[i].dy;
+								//} else {
+									//players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+									//players[playerIter].bullets[i].y += (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
+									//players[playerIter].bullets[i].x += players[playerIter].bullets[i].dx;
+									//players[playerIter].bullets[i].y += players[playerIter].bullets[i].dy;
+								//}
 							}
 						/*
 						} else {
