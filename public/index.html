@@ -15,29 +15,14 @@
 		}
 
 		#setUpBackgroundImage {
+			position: absolute;
 			background: url('images/example.jpg') no-repeat center center fixed;
 			-webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
   			background-size: cover;
+			z-index: 1;
 
-  			-webkit-filter: blur(13px);
-		    -moz-filter: blur(13px);
-		    -o-filter: blur(13px);
-		    -ms-filter: blur(13px);
-		    filter: blur(13px);
-		    position: absolute;
-		}
-
-		#setUpDiv {
-			background-color:rgba(0, 0, 0, 0.0);
-			position:absolute;
-		    z-index:9999;
-		    -webkit-filter: blur(0px);
-		    -moz-filter: blur(0px);
-		    -o-filter: blur(0px);
-		    -ms-filter: blur(13px);
-		    filter: blur(0px);
 			/*
 			background: url('images/example.jpg') no-repeat center center fixed;
 			-webkit-background-size: cover;
@@ -45,6 +30,55 @@
             -o-background-size: cover;
   			background-size: cover;
   			*/
+
+  			/*
+  			-webkit-filter: blur(13px);
+		    -moz-filter: blur(13px);
+		    -o-filter: blur(13px);
+		    -ms-filter: blur(13px);
+		    filter: blur(13px);
+		    position: absolute;
+		    */
+		}
+
+		#setUpDiv {
+			/*background-color:rgba(0, 0, 0, 0.0);*/
+			position: absolute;
+			background-color:rgba(0, 0, 0, 0.0);
+			z-index: 2;
+			/*z-index: 2;*/
+			/*
+			position:absolute;
+		    z-index:9999;
+		    -webkit-filter: blur(0px);
+		    -moz-filter: blur(0px);
+		    -o-filter: blur(0px);
+		    -ms-filter: blur(13px);
+		    filter: blur(0px);
+		    */
+			/*
+			background: url('images/example.jpg') no-repeat center center fixed;
+			-webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+  			background-size: cover;
+  			*/
+		}
+
+		#derp {
+			position: absolute;
+			z-index: 1;
+			background: url('images/example.jpg') no-repeat center center fixed;
+			-webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+  			background-size: cover;
+
+  			-webkit-filter: blur(10px);
+		    -moz-filter: blur(10px);
+		    -o-filter: blur(10px);
+		    -ms-filter: blur(10px);
+		    filter: blur(10px);
 		}
 
 		#loadingAnimation {
@@ -132,7 +166,12 @@
     </style>
 </head>
 <body>
-	<div id="setUpBackgroundImage"></div>
+	<!--<div id="setUpBackgroundImage">
+		<script type="text/javascript">
+			document.getElementById("setUpBackgroundImage").style.width = window.innerWidth;
+			document.getElementById("setUpBackgroundImage").style.height = window.innerHeight;
+		</script>
+	</div>-->
 	<div id="setUpDiv" class="row">
 		<script type="text/javascript">
 			document.getElementById("setUpDiv").style.width = window.innerWidth;
@@ -155,6 +194,12 @@
           		</div>
         	</div>
       	</div>
+    </div>
+    <div id="derp">
+    	<script type="text/javascript">
+			document.getElementById("derp").style.width = window.innerWidth;
+			document.getElementById("derp").style.height = window.innerHeight;
+		</script>
     </div>
     <!--MAKE CUSTOM ANIMATION!-->
     <div id="loadingAnimation" class="preloader-wrapper big active">
