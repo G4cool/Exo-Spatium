@@ -65,7 +65,6 @@
 		}
 
 		#changeShopBorder {
-			border-color: none;
 			border-width: 0px;
 		}
 
@@ -159,6 +158,10 @@
 		<script>
 				document.getElementById("myCanvas").width = window.innerWidth;
 				document.getElementById("myCanvas").height = window.innerHeight;
+
+				//document.getElementById("shop").style.width = window.innerWidth - 10;
+				//document.getElementById("shop").style.height = window.innerHeight - 10;
+
 
 	        //$(function(){
 	            var clients = {};
@@ -441,8 +444,10 @@
 
 				function showShop() {
 					document.getElementById("overlay").style.display = "block";
-					document.getElementById("shop").style.width = (window.innerWidth/2) + "px";
-					document.getElementById("shop").style.height = (window.innerHeight/2) + "px";
+					//document.getElementById("shop").style.width = (window.innerWidth/2) + "px";
+					//document.getElementById("shop").style.height = (window.innerHeight/2) + "px";
+					document.getElementById("shop").style.width = window.innerWidth - 10 + "px";
+					document.getElementById("shop").style.height = window.innerHeight - 10 + "px";
 					document.getElementById("shop").style.left = ((window.innerWidth/2) - (parseInt(document.getElementById("shop").style.width)/2));
 					document.getElementById("shop").style.top = ((window.innerHeight/2) - (parseInt(document.getElementById("shop").style.height)/2));
 					document.getElementById("shop").style.display = "block";
