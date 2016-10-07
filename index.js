@@ -146,14 +146,18 @@ function updateFrame(){
 			if (players[playerIter].keypresses.isSpacePressed) {
 				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/4) { // Firerate
 					console.log(-1 * Math.atan2((players[playerIter].mouseY - players[playerIter].windowHeight/2),(players[playerIter].mouseX - players[playerIter].windowWidth/2)) * 180 / Math.PI);
+					var originalAngle = -1 * Math.atan2((players[playerIter].mouseY - players[playerIter].windowHeight/2),(players[playerIter].mouseX - players[playerIter].windowWidth/2)) * 180 / Math.PI;
 					for (var angleShoot1 = 0; angleShoot1 < players[playerIter].numShots; angleShoot1++) {
 						//console.log("players[playerIter].numShots" + players[playerIter].numShots);
 						var startingAngle = -5 * (players[playerIter].numShots - 1);
+						var nowAngle = originalAngle + startingAngle;
 						//console.log("startingAngle: " + startingAngle);
 						slope = ((players[playerIter].windowHeight/2) - players[playerIter].mouseY)/((players[playerIter].windowWidth/2) - players[playerIter].mouseX);
 						console.log("slope: " + slope);
-						var initialDy = players[playerIter].windowHeight/2 - players[playerIter].mouseY;
-						var initialDx = players[playerIter].windowWidth/2 - players[playerIter].mouseX;
+						//var initialDy = players[playerIter].windowHeight/2 - players[playerIter].mouseY;
+						//var initialDx = players[playerIter].windowWidth/2 - players[playerIter].mouseX;
+						var initialDy = Math.sin(nowAngle * Math.PI / 180);
+						var initialDx = Math.cos(nowAngle * Math.PI / 180);
 						var hypotenuse = Math.sqrt((initialDx*initialDx) + (initialDy*initialDy));
 						var factor = hypotenuse/BULLET_SPEED;
 						var dy = initialDy / factor;
@@ -212,7 +216,7 @@ function updateFrame(){
 								//if (players[playerIter].bullets[i].mouseX <= players[playerIter].windowWidth/2) {
 									//players[playerIter].bullets[i].x -= (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
 									//players[playerIter].bullets[i].y -= (Math.sin(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
-									players[playerIter].bullets[i].x -= players[playerIter].bullets[i].dx;
+									players[playerIter].bullets[i].x += players[playerIter].bullets[i].dx;
 									players[playerIter].bullets[i].y -= players[playerIter].bullets[i].dy;
 								//} else {
 									//players[playerIter].bullets[i].x += (Math.cos(Math.atan(players[playerIter].bullets[i].slope)) * BULLET_SPEED);
