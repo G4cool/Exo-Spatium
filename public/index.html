@@ -15,62 +15,36 @@
 		}
 
 		#setUpBackgroundImage {
-			/*
-			position: fixed;
-			left: 0;
-			right: 0;
-			z-index: 1;
-
-			display: block;
-			*/
-
-			/*background: url('images/example.jpg') no-repeat center center fixed;*/
-
-			/*
-            -webkit-background-size: cover;
+			background: url('images/example.jpg') no-repeat center center fixed;
+			-webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
   			background-size: cover;
 
-  			-webkit-filter: blur(5px);
-            -moz-filter: blur(5px);
-            -o-filter: blur(5px);
-            -ms-filter: blur(5px);
-  			filter: blur(5px);
-  			*/
-		}
-		
-		#setUpDive:before {
-			content: "";
-			position: fixed;
-			left: 0;
-			right: 0;
-			z-index: -1;
-			  
-			display: block;
-			background: url('images/example.jpg');
-			width: 1200px;
-			height: 800px;
-			  
-			-webkit-filter: blur(5px);
-			-moz-filter: blur(5px);
-			-o-filter: blur(5px);
-			-ms-filter: blur(5px);
-			filter: blur(5px);
+  			-webkit-filter: blur(13px);
+		    -moz-filter: blur(13px);
+		    -o-filter: blur(13px);
+		    -ms-filter: blur(13px);
+		    filter: blur(13px);
+		    position: absolute;
 		}
 
 		#setUpDiv {
-			/*background: url('images/example.jpg') no-repeat center center fixed;*/
+			background-color:rgba(0, 0, 0, 0.0);
+			position:absolute;
+		    z-index:9999;
+		    -webkit-filter: blur(0px);
+		    -moz-filter: blur(0px);
+		    -o-filter: blur(0px);
+		    -ms-filter: blur(13px);
+		    filter: blur(0px);
 			/*
-			position: fixed;
-  			left: 0;
-  			right: 0;
-  			z-index: 9999;
+			background: url('images/example.jpg') no-repeat center center fixed;
+			-webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+  			background-size: cover;
   			*/
-  			position: fixed;
-  			left: 0;
-  			right: 0;
-  			z-index: 0;
 		}
 
 		#loadingAnimation {
