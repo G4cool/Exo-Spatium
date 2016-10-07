@@ -14,6 +14,65 @@
 		   padding: 0;
 		}
 
+		#setUpBackgroundImage {
+			/*
+			position: fixed;
+			left: 0;
+			right: 0;
+			z-index: 1;
+
+			display: block;
+			*/
+
+			/*background: url('images/example.jpg') no-repeat center center fixed;*/
+
+			/*
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+  			background-size: cover;
+
+  			-webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+  			filter: blur(5px);
+  			*/
+		}
+		
+		#setUpDive:before {
+			content: "";
+			position: fixed;
+			left: 0;
+			right: 0;
+			z-index: -1;
+			  
+			display: block;
+			background: url('images/example.jpg');
+			width: 1200px;
+			height: 800px;
+			  
+			-webkit-filter: blur(5px);
+			-moz-filter: blur(5px);
+			-o-filter: blur(5px);
+			-ms-filter: blur(5px);
+			filter: blur(5px);
+		}
+
+		#setUpDiv {
+			/*background: url('images/example.jpg') no-repeat center center fixed;*/
+			/*
+			position: fixed;
+  			left: 0;
+  			right: 0;
+  			z-index: 9999;
+  			*/
+  			position: fixed;
+  			left: 0;
+  			right: 0;
+  			z-index: 0;
+		}
+
 		#loadingAnimation {
 			display: none;
     		margin: 0 auto;
@@ -99,7 +158,12 @@
     </style>
 </head>
 <body>
+	<div id="setUpBackgroundImage"></div>
 	<div id="setUpDiv" class="row">
+		<script type="text/javascript">
+			document.getElementById("setUpDiv").style.width = window.innerWidth;
+			document.getElementById("setUpDiv").style.height = window.innerHeight;
+		</script>
    		<div class="col s12">
         	<div class="card-panel blue z-depth-0 darken-1">
           		<div class="row">
@@ -158,10 +222,6 @@
 		<script>
 				document.getElementById("myCanvas").width = window.innerWidth;
 				document.getElementById("myCanvas").height = window.innerHeight;
-
-				//document.getElementById("shop").style.width = window.innerWidth - 10;
-				//document.getElementById("shop").style.height = window.innerHeight - 10;
-
 
 	        //$(function(){
 	            var clients = {};
@@ -444,8 +504,6 @@
 
 				function showShop() {
 					document.getElementById("overlay").style.display = "block";
-					//document.getElementById("shop").style.width = (window.innerWidth/2) + "px";
-					//document.getElementById("shop").style.height = (window.innerHeight/2) + "px";
 					document.getElementById("shop").style.width = window.innerWidth - 10 + "px";
 					document.getElementById("shop").style.height = window.innerHeight - 10 + "px";
 					document.getElementById("shop").style.left = ((window.innerWidth/2) - (parseInt(document.getElementById("shop").style.width)/2));
