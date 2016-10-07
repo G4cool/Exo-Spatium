@@ -14,71 +14,22 @@
 		   padding: 0;
 		}
 
-		#setUpBackgroundImage {
-			position: absolute;
-			background: url('images/example.jpg') no-repeat center center fixed;
-			-webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-  			background-size: cover;
-			z-index: 1;
-
-			/*
-			background: url('images/example.jpg') no-repeat center center fixed;
-			-webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-  			background-size: cover;
-  			*/
-
-  			/*
-  			-webkit-filter: blur(13px);
-		    -moz-filter: blur(13px);
-		    -o-filter: blur(13px);
-		    -ms-filter: blur(13px);
-		    filter: blur(13px);
-		    position: absolute;
-		    */
-		}
-
 		#setUpDiv {
-			/*background-color:rgba(0, 0, 0, 0.0);*/
 			position: absolute;
 			background-color:rgba(0, 0, 0, 0.0);
 			z-index: 2;
-			/*z-index: 2;*/
-			/*
-			position:absolute;
-		    z-index:9999;
-		    -webkit-filter: blur(0px);
-		    -moz-filter: blur(0px);
-		    -o-filter: blur(0px);
-		    -ms-filter: blur(13px);
-		    filter: blur(0px);
-		    */
-			/*
-			background: url('images/example.jpg') no-repeat center center fixed;
+			overflow: hidden;
+		}
+
+		#setUpBackgroundImage {
+			position: absolute;
+			z-index: 1;
+			background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/example.jpg') no-repeat center center fixed;
 			-webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
   			background-size: cover;
-  			*/
-		}
-
-		#derp {
-			position: absolute;
-			z-index: 1;
-			background: url('images/example.jpg') no-repeat center center fixed;
-			-webkit-background-size: auto 120%;
-            -moz-background-size: auto 120%;
-            -o-background-size: auto 120%;
-  			background-size: auto 120;
-
-  			-webkit-filter: blur(1px);
-		    -moz-filter: blur(1px);
-		    -o-filter: blur(1px);
-		    -ms-filter: blur(1px);
-		    filter: blur(1px);
+  			overflow: hidden;
 		}
 
 		#loadingAnimation {
@@ -166,12 +117,6 @@
     </style>
 </head>
 <body>
-	<!--<div id="setUpBackgroundImage">
-		<script type="text/javascript">
-			document.getElementById("setUpBackgroundImage").style.width = window.innerWidth;
-			document.getElementById("setUpBackgroundImage").style.height = window.innerHeight;
-		</script>
-	</div>-->
 	<div id="setUpDiv" class="row">
 		<script type="text/javascript">
 			document.getElementById("setUpDiv").style.width = window.innerWidth;
@@ -195,10 +140,10 @@
         	</div>
       	</div>
     </div>
-    <div id="derp">
+    <div id="setUpBackgroundImage">
     	<script type="text/javascript">
-			document.getElementById("derp").style.width = window.innerWidth;
-			document.getElementById("derp").style.height = window.innerHeight;
+			document.getElementById("setUpBackgroundImage").style.width = window.innerWidth;
+			document.getElementById("setUpBackgroundImage").style.height = window.innerHeight;
 		</script>
     </div>
     <!--MAKE CUSTOM ANIMATION!-->
