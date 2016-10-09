@@ -35,6 +35,7 @@
 		#loadingAnimation {
 			display: none;
     		margin: 0 auto;
+    		z-index: 3;
 		}
 
         #gameOverDivContainer {
@@ -337,6 +338,7 @@
                     });
                     setTimeout(function(){
                     	$("#setUpDiv").fadeOut(1000);
+                    	$("#setUpBackgroundImage").fadeOut(1000);
                     	$("#loadingAnimation").fadeOut(250);
                     }, 1000);
 					setTimeout(function(){
