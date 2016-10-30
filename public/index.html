@@ -293,6 +293,8 @@
 
 				var shipImg = new Image();
 				shipImg.src = 'images/ship6.png';
+				var enemyShipImg = new Image();
+				enemyShipImg.src = 'images/enemy ship6.png';
 				var starBackground = new Image();
 				starBackground.src = 'images/starBackground4.png';
 				var laserImg = new Image();
@@ -464,7 +466,7 @@
 						ctx.rotate(rotation);
 						ctx.translate(-(correctX + shipImg.width/2), -(correctY + shipImg.height/2));				
 
-						ctx.drawImage(shipImg, correctX, correctY);
+						ctx.drawImage(enemyShipImg, correctX, correctY);
 					}
 
 					ctx.restore();
