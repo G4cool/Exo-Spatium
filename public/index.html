@@ -52,11 +52,13 @@
     		z-index: 3;
 		}
 
+		/*
         #gameOverDivContainer {
     		position: absolute;
             left: 25px;
             top: 100px;
     	}
+    	*/
 
     	#killCounterContainer {
     		position: absolute;
@@ -176,13 +178,13 @@
 	      	</div>
 	    </div>
 	</div>
-	<div id="gameOverDivContainer" class="row" style="display: none;">
+	<!--<div id="gameOverDivContainer" class="row" style="display: none;">
       	<div class="col s12">
         	<div class="card-panel card-panel blue z-depth-0 darken-4">
           		<div id="gameOverDiv"></div>
         	</div>
     	</div>
-    </div>
+    </div>-->
     <div id="killCounterContainer" class="row" style="display: none;">
       	<div class="col s12">
         	<div class="card-panel blue z-depth-0 darken-4">
@@ -580,10 +582,12 @@
 					}
 				});
 
+				/*
 				socket.on('connected', function (message) {
 					document.getElementById("gameOverDivContainer").style.display = "none";
 					document.getElementById("gameOverDiv").innerHTML = "";
 				});
+				*/
 
 				socket.on('killConfirmed', function(message) {
 					Materialize.toast(message, 3000, 'rounded')
@@ -593,6 +597,7 @@
 					myIndex = message;
 				});
 
+				/*
 				socket.on('game_over', function(winner){
 					if (inYet == false) {
 						document.getElementById("gameOverDivContainer").style.display= "none";
@@ -601,6 +606,7 @@
 						document.getElementById("gameOverDiv").innerHTML = "Game Over!";
 					}
 				});
+				*/
 		</script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     	<script type="text/javascript" src="js/materialize.min.js"></script>
