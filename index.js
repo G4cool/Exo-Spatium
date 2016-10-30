@@ -77,7 +77,7 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		keypresses:[isLeftPressed, isRightPressed, isUpPressed, isDownPressed, isSpacePressed],
 		rotate:function(rotateLeft) { //rotateLeft is a boolean. If it's true, then the tank will rotate left, otherwise right
 			this.rotation += (rotateLeft ? TANK_ROTATION_SPEED : -TANK_ROTATION_SPEED)
-		},
+		}, // ???
 		makeBullet: function(x, y, dx, dy, playerX, playerY, mouseX, mouseY) {
 			var bullet = {
 				x:x,
