@@ -471,21 +471,27 @@
 				}
 
 				function drawBullet(bullet, index) {
-					ctx.beginPath();
+					//ctx.beginPath();
 					if (index == myIndex) {
+						ctx.save();
 						myBulletX = bullet.x;
 						myBulletY = bullet.y;
 						myBulletXFromCenter = (window.innerWidth/2) - myX;
 						myBulletYFromCenter = (window.innerHeight/2) - myY;
-						ctx.arc((bullet.x + myBulletXFromCenter + shipImg.width/2), (bullet.y + myBulletYFromCenter + shipImg.height/2), radius, 0, 2 * Math.PI);
-						ctx.fillStyle = "#0099FF";
+						//ctx.arc((bullet.x + myBulletXFromCenter + shipImg.width/2), (bullet.y + myBulletYFromCenter + shipImg.height/2), radius, 0, 2 * Math.PI);
+						//ctx.fillStyle = "#0099FF";
+						angle = -Math.atan2((window.innerWidth/2 - mouseX),(window.innerHeight/2 - mouseY));
+						ctx.rotate(angle);
+						ctx.drawImage(shipImg, (bullet.x + myBulletXFromCenter + shipImg.width/2), (bullet.y + myBulletYFromCenter + shipImg.height/2));
 					} else {
+						ctx.save();
 						correctBulletX = bullet.x + myXFromCenter;
 						correctBulletY = bullet.y + myYFromCenter;
-						ctx.arc((correctBulletX + shipImg.width/2), (correctBulletY + shipImg.height/2), radius, 0, 2 * Math.PI);
-						ctx.fillStyle = 'white';
+						//ctx.arc((correctBulletX + shipImg.width/2), (correctBulletY + shipImg.height/2), radius, 0, 2 * Math.PI);
+						//ctx.fillStyle = 'white';
 					}
-					ctx.fill();
+					//ctx.fill();
+					ctx.restore();
 				}
 
 				function drawBackground() {
