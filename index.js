@@ -20,7 +20,7 @@ const FRAMES_PER_SECOND = 60;
 
 const SHIP_SPEED = 10;
 const TANK_ROTATION_SPEED = Math.PI * -.01;
-const BULLET_SPEED = 20;
+const BULLET_SPEED = 2;
 
 const hitRadius = 20;
 
@@ -78,12 +78,13 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		rotate:function(rotateLeft) { //rotateLeft is a boolean. If it's true, then the tank will rotate left, otherwise right
 			this.rotation += (rotateLeft ? TANK_ROTATION_SPEED : -TANK_ROTATION_SPEED)
 		}, // ???
-		makeBullet: function(x, y, dx, dy, playerX, playerY, mouseX, mouseY) {
+		makeBullet: function(x, y, dx, dy, rotation, playerX, playerY, mouseX, mouseY) {
 			var bullet = {
 				x:x,
 				y:y,
 				dx:dx,
 				dy:dy,
+				rotation: rotation,
 				playerX:playerX,
 				playerY:playerY,
 				mouseX:mouseX,
@@ -156,7 +157,7 @@ function updateFrame(){
 						var factor = hypotenuse/BULLET_SPEED;
 						var dy = initialDy / factor;
 						var dx = initialDx / factor;
-						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, dx, dy, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY);
+						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, dx, dy, players[playerIter].rotation, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY);
 					}
 					players[playerIter].timeBetweenBullets = 0;
 				}
