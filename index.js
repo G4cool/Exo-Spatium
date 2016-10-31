@@ -157,7 +157,8 @@ function updateFrame(){
 						var factor = hypotenuse/BULLET_SPEED;
 						var dy = initialDy / factor;
 						var dx = initialDx / factor;
-						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, dx, dy, players[playerIter].rotation, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY);
+						var rotation = players[playerIter].rotation + Math.acos(dx/Math.sqrt(dx * dx));
+						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, dx, dy, rotation, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY);
 					}
 					players[playerIter].timeBetweenBullets = 0;
 				}
