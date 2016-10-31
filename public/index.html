@@ -299,6 +299,8 @@
 				starBackground.src = 'images/starBackground4.png';
 				var laserImg = new Image();
 				laserImg.src = 'images/laser.png';
+				var enemyLaserImg = new Image();
+				enemyLaserImg.src = 'images/enemy laser.png';
 
 				var usernameSubmit = document.getElementById("usernameTextbox");
 				usernameSubmit.addEventListener("keydown", function (e) {
@@ -492,7 +494,7 @@
 						ctx.translate(((correctBulletX + shipImg.width/2 + laserImg.width/2)),((correctBulletY + shipImg.height/2 + laserImg.height/2)));
 						ctx.rotate(rotation);
 						ctx.translate(-((correctBulletX + shipImg.width/2 + laserImg.width/2)),-((correctBulletY + shipImg.height/2 + laserImg.height/2)));
-						ctx.drawImage(laserImg, (correctBulletX + shipImg.width/2), (correctBulletY + shipImg.height/2));
+						ctx.drawImage(enemyLaserImg, (correctBulletX + shipImg.width/2), (correctBulletY + shipImg.height/2));
 					}
 					ctx.restore();
 				}
