@@ -157,7 +157,13 @@ function updateFrame(){
 						var factor = hypotenuse/BULLET_SPEED;
 						var dy = initialDy / factor;
 						var dx = initialDx / factor;
-						var rotation = players[playerIter].rotation + Math.acos(dx/Math.sqrt(dx * dx));
+						//console.log("dx/Math.sqrt(dx * dx): " + dx/Math.sqrt(dx * dx));
+						//console.log("initialDx: " + initialDx);
+						//console.log("dx: " + dx);
+						//var rotation = players[playerIter].rotation + Math.acos(dx/Math.sqrt(dx * dx));
+						//var rotation = Math.acos(dx/Math.sqrt(dx * dx));
+						var rotation = Math.acos(initialDx);
+						//console.log("rotation: " + rotation);
 						players[playerIter].makeBullet(players[playerIter].x, players[playerIter].y, dx, dy, rotation, players[playerIter].x, players[playerIter].y, players[playerIter].mouseX, players[playerIter].mouseY);
 					}
 					players[playerIter].timeBetweenBullets = 0;
