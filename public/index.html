@@ -27,24 +27,6 @@
 			overflow: hidden;
 		}
 
-		/*
-		#setUpBackgroundImage {
-			/*position: absolute;*/
-			
-			/*background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/example.jpg') no-repeat center center fixed;*/
-			/*background: no-repeat center center fixed;*/
-			/*
-			-webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-  			background-size: cover;
-  			*/
-  			/*
-  			z-index: 1;
-
-  			overflow: hidden;
-		}*/
-
 		#bg {
 		  	position: fixed; 
 			top: -50%; 
@@ -70,28 +52,6 @@
 	        -ms-filter: blur(5px);
 		}
 
-		/*
-		#setUpImage {
-            -webkit-background-size: cover;
-		    -moz-background-size: cover;
-		    -o-background-size: cover;
-		  	background-size: cover;
-
-			filter: blur(5px);
-	        -webkit-filter: blur(5px);
-	        -moz-filter: blur(5px);
-	        -o-filter: blur(5px);
-	        -ms-filter: blur(5px);
-
-			/*-webkit-background-size: cover;
-		    -moz-background-size: cover;
-		    -o-background-size: cover;
-		  	background-size: cover;*/
-
-    		/*margin: -5px -10px -10px -5px;*/
-    		/*margin: -50px -50px -50px -50px;*/
-		/*}*/
-
 		#loadingAnimation {
 			display: none;
     		position: absolute;
@@ -99,14 +59,6 @@
 		    left: 50%;
     		z-index: 3;
 		}
-
-		/*
-        #gameOverDivContainer {
-    		position: absolute;
-            left: 25px;
-            top: 100px;
-    	}
-    	*/
 
     	#killCounterContainer {
     		position: absolute;
@@ -205,17 +157,6 @@
         	</div>
       	</div>
     </div>
-    <!--
-    <div id="setUpBackgroundImage">
-    	<script type="text/javascript">
-			//document.getElementById("setUpBackgroundImage").style.width = window.innerWidth;
-			//document.getElementById("setUpBackgroundImage").style.height = window.innerHeight;
-		</script>
-		<img id="setUpImage" src="images/example.jpg"/>
-		<script type="text/javascript">
-			//document.getElementById("setUpImage").style.width = window.innerWidth;
-		</script>
-    </div>-->
 
     <div id="bg">
     	<img id="setUpImage" src="images/example.jpg"/>
@@ -235,13 +176,6 @@
 	      	</div>
 	    </div>
 	</div>
-	<!--<div id="gameOverDivContainer" class="row" style="display: none;">
-      	<div class="col s12">
-        	<div class="card-panel card-panel blue z-depth-0 darken-4">
-          		<div id="gameOverDiv"></div>
-        	</div>
-    	</div>
-    </div>-->
     <div id="killCounterContainer" class="row" style="display: none;">
       	<div class="col s12">
         	<div class="card-panel blue z-depth-0 darken-4">
@@ -373,7 +307,6 @@
 				function sendData(){
 					var data = [rightkeydown, leftkeydown, upkeydown, downkeydown, spacekeydown, mouseX, mouseY, window.innerWidth, window.innerHeight, angle, shipImg.width, shipImg.height, alive];
 					socket.emit('user_input_state', data);
-					//console.log("trying to send user input");
 				}
 
 				window.onkeydown = function(e){
@@ -416,18 +349,7 @@
                                 '-o-filter': 'blur(2px)',
                                 '-ms-filter': 'blur(2px)',
                     });
-                    /*
-                    $('#setUpImage').css({
-                    			//'background-size': 'auto 150%',
-                                'filter': 'blur(7px)',
-                                '-webkit-filter': 'blur(7px)',
-                                '-moz-filter': 'blur(7px)',
-                                '-o-filter': 'blur(7px)',
-                                '-ms-filter': 'blur(7px)',
-                    });
-                    */
                     $('#bg').css({
-                    			//'background-size': 'auto 150%',
                                 'filter': 'blur(7px)',
                                 '-webkit-filter': 'blur(7px)',
                                 '-moz-filter': 'blur(7px)',
