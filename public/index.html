@@ -5,6 +5,8 @@
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/loaders.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="js/loaders.css.js"  media="screen,projection"/>
     
     <script src="/socket.io/socket.io.js"></script>
 
@@ -61,12 +63,12 @@
 
 		#circle {
 		    background-color: rgba(0,0,0,0);
-			border:5px solid rgba(0,183,229,0.9);
-			opacity:.9;
+			border:2px solid rgba(255,255,255,0.9);
+			/*opacity:.9;*/
 			border-right:5px solid rgba(0,0,0,0);
 			border-left:5px solid rgba(0,0,0,0);
 			border-radius:50px;
-			box-shadow: 0 0 35px #2187e7;
+			/*box-shadow: 0 0 35px #2187e7;*/
 			width:100px; /* 50px * 2 */
 			height:100px; /* 50px * 2 */
 			position: relative;
@@ -79,12 +81,12 @@
 
 		#circle1 {
 		    background-color: rgba(0,0,0,0);
-			border:5px solid rgba(0,183,229,0.9);
-			opacity:.9;
+			border:2px solid rgba(255,255,255,0.9);
+			/*opacity:.9;*/
 			border-left:5px solid rgba(0,0,0,0);
 			border-right:5px solid rgba(0,0,0,0);
 			border-radius:50px;
-			box-shadow: 0 0 15px #2187e7; 
+			/*box-shadow: 0 0 15px #2187e7;*/ 
 			width:60px; /* 30px * 2 */
 			height:60px; /* 30px * 2 */
 			margin:0 auto;
@@ -98,18 +100,18 @@
 		@-moz-keyframes spinPulse {
 		    0% {
 		        -moz-transform: rotate(160deg);
-		        opacity: 0;
-		        box-shadow: 0 0 1px #2187e7;
+		        /*opacity: 0;
+		        box-shadow: 0 0 1px #2187e7;*/
 		    }
 
 		    50% {
 		        -moz-transform: rotate(145deg);
-		        opacity: 1;
+		        /*opacity: 1;*/
 		    }
 
 		    100% {
 		        -moz-transform: rotate(-320deg);
-		        opacity: 0;
+		        /*opacity: 0;*/
 		    };
 		}
 
@@ -126,18 +128,18 @@
 		@-webkit-keyframes spinPulse {
 		    0% {
 		        -webkit-transform: rotate(160deg);
-		        opacity: 0;
-		        box-shadow: 0 0 1px #2187e7;
+		        /*opacity: 0;
+		        box-shadow: 0 0 1px #2187e7;*/
 		    }
 
 		    50% {
 		        -webkit-transform: rotate(145deg);
-		        opacity: 1;
+		        /*opacity: 1;*/
 		    }
 
 		    100% {
 		        -webkit-transform: rotate(-320deg);
-		        opacity: 0;
+		        /*opacity: 0;*/
 		    };
 		}
 
