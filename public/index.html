@@ -102,13 +102,14 @@
 }
 */
 
-.durr {
+#animationContainer {
+	display: none;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 }
 
-.circle {
+#circle {
     background-color: rgba(0,0,0,0);
 	border:5px solid rgba(0,183,229,0.9);
 	opacity:.9;
@@ -126,7 +127,7 @@
 	-webkit-animation:spinPulse 1s infinite linear;
 }
 
-.circle1 {
+#circle1 {
     background-color: rgba(0,0,0,0);
 	border:5px solid rgba(0,183,229,0.9);
 	opacity:.9;
@@ -311,14 +312,10 @@
     </div>
 
     <!--MAKE CUSTOM ANIMATION!-->
-    <!--
-    <div class="container">
-		<div class="rocket"></div>
-	</div>-->
 
-	<div class="durr">
-		<div class="circle"></div>
-		<div class="circle1"></div>
+	<div id="animationContainer">
+		<div id="circle"></div>
+		<div id="circle1"></div>
 	</div>
 
     <div id="loadingAnimation" class="preloader-wrapper big active">
@@ -499,7 +496,7 @@
 				}
 
 				function updateLobbyClient(){
-					document.getElementById("loadingAnimation").style.display = "block";
+					document.getElementById("animationContainer").style.display = "block";
 					$('#setUpDiv').css({
                                 'filter': 'blur(2px)',
                                 '-webkit-filter': 'blur(2px)',
@@ -517,11 +514,11 @@
                     setTimeout(function(){
                     	$("#setUpDiv").fadeOut(1000);
                     	$("#bg").fadeOut(1000);
-                    	$("#loadingAnimation").fadeOut(250);
+                    	$("#animationContainer").fadeOut(250);
                     }, 1000);
 					setTimeout(function(){
 						document.getElementById("setUpDiv").style.display = "none";
-						document.getElementById("loadingAnimation").style.display = "none";
+						document.getElementById("animationContainer").style.display = "none";
 						username = document.getElementById("usernameTextbox").value;
 						socket.emit('username', username);
 						$('#setUpDiv').css({
