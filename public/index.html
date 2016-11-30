@@ -280,6 +280,9 @@
 				document.getElementById("myCanvas").width = window.innerWidth;
 				document.getElementById("myCanvas").height = window.innerHeight;
 
+				document.getElementById("circle").style.webkitAnimationPlayState = "paused";
+				document.getElementById("circle1").style.webkitAnimationPlayState = "paused";
+
 	        //$(function(){
 	            var clients = {};
 	            var clientNum = 0;
@@ -425,6 +428,8 @@
 				}
 
 				function updateLobbyClient(){
+					document.getElementById("circle").style.webkitAnimationPlayState = "running";
+					document.getElementById("circle1").style.webkitAnimationPlayState = "running";
 					document.getElementById("animationContainer").style.display = "block";
 					$('#setUpDiv').css({
                                 'filter': 'blur(2px)',
@@ -452,6 +457,8 @@
 					setTimeout(function(){
 						document.getElementById("setUpDiv").style.display = "none";
 						document.getElementById("animationContainer").style.display = "none";
+						document.getElementById("circle").style.webkitAnimationPlayState = "paused";
+						document.getElementById("circle1").style.webkitAnimationPlayState = "paused";
 						username = document.getElementById("usernameTextbox").value;
 						socket.emit('username', username);
 						$('#setUpDiv').css({
