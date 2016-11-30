@@ -14,6 +14,12 @@
 		   padding: 0;
 		}
 
+		html, body {
+			margin: 0;
+			height: 100%;
+			overflow: hidden
+		}
+
 		#setUpDiv {
 			position: absolute;
 			background-color:rgba(0, 0, 0, 0.0);
@@ -21,9 +27,10 @@
 			overflow: hidden;
 		}
 
+		/*
 		#setUpBackgroundImage {
 			/*position: absolute;*/
-			z-index: 1;
+			
 			/*background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/example.jpg') no-repeat center center fixed;*/
 			/*background: no-repeat center center fixed;*/
 			/*
@@ -32,17 +39,58 @@
             -o-background-size: cover;
   			background-size: cover;
   			*/
+  			/*
+  			z-index: 1;
+
   			overflow: hidden;
+		}*/
+
+		#bg {
+		  	position: fixed; 
+			top: -50%; 
+			left: -50%; 
+			width: 200%; 
+			height: 200%;
 		}
 
 		#setUpImage {
+			position: absolute; 
+			top: 0; 
+			left: 0; 
+			right: 0; 
+			bottom: 0; 
+			margin: auto; 
+			min-width: 50%;
+			min-height: 50%;
+
 			filter: blur(5px);
-        -webkit-filter: blur(5px);
-        -moz-filter: blur(5px);
-        -o-filter: blur(5px);
-        -ms-filter: blur(5px);
-    margin: -5px -10px -10px -5px;
+	        -webkit-filter: blur(5px);
+	        -moz-filter: blur(5px);
+	        -o-filter: blur(5px);
+	        -ms-filter: blur(5px);
 		}
+
+		/*
+		#setUpImage {
+            -webkit-background-size: cover;
+		    -moz-background-size: cover;
+		    -o-background-size: cover;
+		  	background-size: cover;
+
+			filter: blur(5px);
+	        -webkit-filter: blur(5px);
+	        -moz-filter: blur(5px);
+	        -o-filter: blur(5px);
+	        -ms-filter: blur(5px);
+
+			/*-webkit-background-size: cover;
+		    -moz-background-size: cover;
+		    -o-background-size: cover;
+		  	background-size: cover;*/
+
+    		/*margin: -5px -10px -10px -5px;*/
+    		/*margin: -50px -50px -50px -50px;*/
+		/*}*/
 
 		#loadingAnimation {
 			display: none;
@@ -157,13 +205,22 @@
         	</div>
       	</div>
     </div>
+    <!--
     <div id="setUpBackgroundImage">
     	<script type="text/javascript">
-			document.getElementById("setUpBackgroundImage").style.width = window.innerWidth;
-			document.getElementById("setUpBackgroundImage").style.height = window.innerHeight;
+			//document.getElementById("setUpBackgroundImage").style.width = window.innerWidth;
+			//document.getElementById("setUpBackgroundImage").style.height = window.innerHeight;
 		</script>
 		<img id="setUpImage" src="images/example.jpg"/>
+		<script type="text/javascript">
+			//document.getElementById("setUpImage").style.width = window.innerWidth;
+		</script>
+    </div>-->
+
+    <div id="bg">
+    	<img id="setUpImage" src="images/example.jpg"/>
     </div>
+
     <!--MAKE CUSTOM ANIMATION!-->
     <div id="loadingAnimation" class="preloader-wrapper big active">
 	    <div class="spinner-layer spinner-blue-only">
@@ -359,17 +416,27 @@
                                 '-o-filter': 'blur(2px)',
                                 '-ms-filter': 'blur(2px)',
                     });
-                    $('#setUpBackgroundImage').css({
+                    /*
+                    $('#setUpImage').css({
                     			//'background-size': 'auto 150%',
-                                'filter': 'blur(2px)',
-                                '-webkit-filter': 'blur(2px)',
-                                '-moz-filter': 'blur(2px)',
-                                '-o-filter': 'blur(2px)',
-                                '-ms-filter': 'blur(2px)',
+                                'filter': 'blur(7px)',
+                                '-webkit-filter': 'blur(7px)',
+                                '-moz-filter': 'blur(7px)',
+                                '-o-filter': 'blur(7px)',
+                                '-ms-filter': 'blur(7px)',
+                    });
+                    */
+                    $('#bg').css({
+                    			//'background-size': 'auto 150%',
+                                'filter': 'blur(7px)',
+                                '-webkit-filter': 'blur(7px)',
+                                '-moz-filter': 'blur(7px)',
+                                '-o-filter': 'blur(7px)',
+                                '-ms-filter': 'blur(7px)',
                     });
                     setTimeout(function(){
                     	$("#setUpDiv").fadeOut(1000);
-                    	$("#setUpBackgroundImage").fadeOut(1000);
+                    	$("#bg").fadeOut(1000);
                     	$("#loadingAnimation").fadeOut(250);
                     }, 1000);
 					setTimeout(function(){
