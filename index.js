@@ -229,7 +229,7 @@ io.on('connection', function(socket){
 	makePlayer(50, 50, 0, socket.id, myColor);
 
 	console.log("a user connected: " + socket.id);
-		socket.on('username', function(message) {
+	socket.on('username', function(message) {
 		players[getPlayerById(socket.id)].username = encodeHTML(message);
 		console.log("username of socket.id " + socket.id + ": " + message);
 	});
