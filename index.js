@@ -231,7 +231,6 @@ io.on('connection', function(socket){
 	console.log("a user connected: " + socket.id);
 		socket.on('username', function(message) {
 		players[getPlayerById(socket.id)].username = encodeHTML(message);
-		//players[getPlayerById(socket.id)].username = message;
 		console.log("username of socket.id " + socket.id + ": " + message);
 	});
 
