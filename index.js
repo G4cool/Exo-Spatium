@@ -201,11 +201,7 @@ function updateFrame(){
 	}
 	for (playerIterTwo = 0; playerIterTwo < playersForKillCounter.length; playerIterTwo++) {
 		if(typeof playersForKillCounter[playerIterTwo] !== 'undefined'){
-			if (((playerIterTwo == (playersForKillCounter.length - 1)) && (playersForKillCounter.length > 1)) || (playersForKillCounter.length == 1)) {
-				killCounterString += "" + playersForKillCounter[playerIterTwo].username + ": " + playersForKillCounter[playerIterTwo].killCounter;
-			} else {
-				killCounterString += "" + playersForKillCounter[playerIterTwo].username + ": " + playersForKillCounter[playerIterTwo].killCounter + ", ";
-			}
+			killCounterString += "" + playersForKillCounter[playerIterTwo].username + ": " + playersForKillCounter[playerIterTwo].killCounter + "\r\n";
 		}
 		playersForKillCounter.clean(undefined);
 	}
