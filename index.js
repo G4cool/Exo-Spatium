@@ -201,7 +201,7 @@ function updateFrame(){
 	}
 	for (playerIterTwo = 0; playerIterTwo < playersForKillCounter.length; playerIterTwo++) {
 		if(typeof playersForKillCounter[playerIterTwo] !== 'undefined'){
-			killCounterString += "" + playersForKillCounter[playerIterTwo].username + ": " + playersForKillCounter[playerIterTwo].killCounter + "\r\n";
+			killCounterString += "" + playersForKillCounter[playerIterTwo].username + ": " + playersForKillCounter[playerIterTwo].killCounter + "<br>";
 		}
 		playersForKillCounter.clean(undefined);
 	}
