@@ -151,8 +151,8 @@
 
     	#killCounterContainer {
     		position: absolute;
-            left: 25px;
-            top: 25px;
+            /*left: 25px;
+            top: 25px;*/
     	}
 
     	#killCounter {
@@ -161,8 +161,9 @@
     	}
 
     	#abletsAmountContainer {
-    		position: absolute;
-    		left: 25px;
+    		/*position: absolute;*/
+    		/*left: 25px;*/
+    		/*margin: 0 auto;*/
     		color: #0DB9FF;
     	}
 
@@ -265,15 +266,14 @@
 	</div>
 
     <div id="killCounterContainer" class="row" style="display: none;">
-      	<div class="col s12">
+      	<div class="col s4">
           	<div id="killCounter"></div>
     	</div>
+    	<div id="abletsAmountContainer" class="col s4" style="display: none;">
+	        <div id="abletsAmount"></div>
+	    </div>
     </div>
-    <div id="abletsAmountContainer" class="row" style="display: none;">
-      	<div class="col s12">
-          	<div id="abletsAmount"></div>
-    	</div>
-    </div>
+    
 	<div id="gameDiv" style="display: none;">
 		<canvas id="myCanvas" width="800" height="800"></canvas>
 		<script>
