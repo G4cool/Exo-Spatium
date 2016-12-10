@@ -237,6 +237,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('disconnect', function(){
+		console.log("a user disconnected: " + socket.id);
 		players.splice(getPlayerById(socket.id),1);
 		playersForKillCounter.splice(getPlayerByIdTwo(socket.id),1);
 	});
