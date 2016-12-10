@@ -21,7 +21,6 @@ const FRAMES_PER_SECOND = 60;
 const SHIP_SPEED = 10;
 const TANK_ROTATION_SPEED = Math.PI * -.01;
 const BULLET_SPEED = 20;
-//const BULLET_SPEED = 2;
 
 const hitRadius = 20;
 
