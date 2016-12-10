@@ -201,7 +201,12 @@ function updateFrame(){
 	}
 	for (playerIterTwo = 0; playerIterTwo < playersForKillCounter.length; playerIterTwo++) {
 		if(typeof playersForKillCounter[playerIterTwo] !== 'undefined'){
-			killCounterString += "" + playersForKillCounter[playerIterTwo].username + ": " + playersForKillCounter[playerIterTwo].killCounter + "<br>";
+			if (playersForKillCounter[playerIterTwo].username.length > 20) {
+				var shortenedUsername = (playersForKillCounter[playerIterTwo].username + "...").slice(-20);
+				killCounterString += "" + shortenedUsername + ": " + playersForKillCounter[playerIterTwo].killCounter + "<br>";
+			} else {
+				killCounterString += "" + playersForKillCounter[playerIterTwo].username + ": " + playersForKillCounter[playerIterTwo].killCounter + "<br>";
+			}
 		}
 		playersForKillCounter.clean(undefined);
 	}
