@@ -704,13 +704,6 @@
 					}
 				});
 
-				/*
-				socket.on('connected', function (message) {
-					document.getElementById("gameOverDivContainer").style.display = "none";
-					document.getElementById("gameOverDiv").innerHTML = "";
-				});
-				*/
-
 				socket.on('killConfirmed', function(message) {
 					Materialize.toast(message, 3000, 'rounded')
 				});
@@ -718,17 +711,6 @@
 				socket.on('yourIndex', function (message) {
 					myIndex = message;
 				});
-
-				/*
-				socket.on('game_over', function(winner){
-					if (inYet == false) {
-						document.getElementById("gameOverDivContainer").style.display= "none";
-					} else {
-						document.getElementById("gameOverDivContainer").style.display= "block";
-						document.getElementById("gameOverDiv").innerHTML = "Game Over!";
-					}
-				});
-				*/
 		</script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     	<script type="text/javascript" src="js/materialize.min.js"></script>
@@ -736,25 +718,21 @@
 	<div id="overlay" style="display: none;"></div>
 	<div id="shop" style="display: none;">
    		<div class="col s12">
-   			<!--<div class="row">
-   				<div class="col s12">-->
-		        	<div id="shopCard" class="card-panel blue z-depth-0 darken-1">
-		        		<div id="abletsAmountShopCard" class="card-panel blue z-depth-0 lighten-1">
-		        			<h5 id="abletsAmountShop"></h5>
-		        		</div>
-						<ul id="changeShopBorder" class="collection with-header blue z-depth-0 lighten-1">
-					        <li class="collection-header blue z-depth-0 lighten-1"><h4>Shop</h4></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Double Shot: 100<a href="#!" class="secondary-content"><i id="buyDoubleShot" onclick="buyDoubleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Triple Shot: 200<a href="#!" class="secondary-content"><i id="buyTripleShot" onclick="buyTripleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Quadruple Shot: 300<a href="#!" class="secondary-content"><i id="buyQuadrupleShot" onclick="buyQuadrupleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
-					        <li class="collection-item blue z-depth-0 lighten-1"><div>Quintuple Shot: 400<a href="#!" class="secondary-content"><i id="buyQuintupleShot" onclick="buyQuintupleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
-					    </ul>
-						<button id="shopButton" onclick="finishShop()" class="btn blue z-depth-0 lighten-1 waves-effect waves-light" type="submit" name="action">Go back to game
-    						<i class="material-icons right">send</i>
- 						</button>
-		        	</div>
-		        <!--</div>
-	        </div>-->
+		    <div id="shopCard" class="card-panel blue z-depth-0 darken-1">
+		    	<div id="abletsAmountShopCard" class="card-panel blue z-depth-0 lighten-1">
+		        	<h5 id="abletsAmountShop"></h5>
+		        </div>
+				<ul id="changeShopBorder" class="collection with-header blue z-depth-0 lighten-1">
+					<li class="collection-header blue z-depth-0 lighten-1"><h4>Shop</h4></li>
+					<li class="collection-item blue z-depth-0 lighten-1"><div>Double Shot: 100<a href="#!" class="secondary-content"><i id="buyDoubleShot" onclick="buyDoubleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
+					<li class="collection-item blue z-depth-0 lighten-1"><div>Triple Shot: 200<a href="#!" class="secondary-content"><i id="buyTripleShot" onclick="buyTripleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
+					<li class="collection-item blue z-depth-0 lighten-1"><div>Quadruple Shot: 300<a href="#!" class="secondary-content"><i id="buyQuadrupleShot" onclick="buyQuadrupleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
+					<li class="collection-item blue z-depth-0 lighten-1"><div>Quintuple Shot: 400<a href="#!" class="secondary-content"><i id="buyQuintupleShot" onclick="buyQuintupleShot()" class="material-icons dp48">shopping_cart</i></a></div></li>
+				</ul>
+				<button id="shopButton" onclick="finishShop()" class="btn blue z-depth-0 lighten-1 waves-effect waves-light" type="submit" name="action">Go back to game
+    				<i class="material-icons right">send</i>
+ 				</button>
+			</div>
       	</div>
     </div>
 </body>
