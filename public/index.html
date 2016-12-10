@@ -271,9 +271,6 @@
 				document.getElementById("circle1").style.webkitAnimationPlayState = "paused";
 
 	        //$(function(){
-				var x = 50
-				var y = 50
-
 				var myIndex = 0;
 				var myX = 0;
 				var myY = 0;
@@ -289,9 +286,7 @@
 				var correctBulletY = 0;
 
 				var backX = 0;
-				var backY = 0
-
-				var playerList = [];
+				var backY = 0;
 
 				var disableSpace = false;
 
@@ -303,10 +298,6 @@
 
 				var c = document.getElementById("myCanvas");
 				var ctx = c.getContext("2d");
-				var shipWidth = 50; // placeholder until image loads
-				var shipHeight = 50; // placeholder until image loads
-				var ready = 'b';
-				const radius = 5;
 
 				var inYet = false;
 
@@ -317,8 +308,6 @@
 				var shopShown = false;
 
 				var doneWithShop = true;
-
-				var overYet = false;
 
 				var minimapRadius = 50;
 				var minimapXCenter = window.innerWidth - (minimapRadius + 10);
@@ -334,8 +323,6 @@
 				var spacekeydown = false;
 				var mouseX = 0;
 				var mouseY = 0;
-
-				var totalSeconds = 0;
 
 				var shipImg = new Image();
 				shipImg.src = 'images/ship6.png';
