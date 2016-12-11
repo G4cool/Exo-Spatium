@@ -375,7 +375,7 @@
 
 			window.onkeydown = function(e){
 				var key=e.keyCode ? e.keyCode : e.which;
-				if (inYet == true) {
+				if (inYet == true && alive == true) {
 					if (key===65) leftkeydown = true;
 					if (key===68) rightkeydown = true;
 					if (key===87) upkeydown = true;
@@ -408,6 +408,7 @@
 				document.getElementById("circle").style.webkitAnimationPlayState = "running";
 				document.getElementById("circle1").style.webkitAnimationPlayState = "running";
 				document.getElementById("animationContainer").style.display = "block";
+				inYet = true;
 				$('#setUpDiv').css({
                             'filter': 'blur(2px)',
                             '-webkit-filter': 'blur(2px)',
@@ -444,7 +445,6 @@
 	                            '-ms-filter': 'blur(0px)',
 	                });
 					document.getElementById("setUpDiv").style.display = "none";
-					inYet = true;
 					disableSpace = true; // ???
 				}, 2000);
 			}
@@ -455,7 +455,6 @@
 				doneWithShop = true;
 				inYet = true;
 				goBackToGame = true;
-				console.log('go back to game');
 			}
 
 			function buyDoubleShot() {
@@ -511,7 +510,7 @@
 					if (outOfBounds == true) {
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "running";
 						document.getElementById("outOfBoundsContainer").style.display = "block";
-						document.getElementById("countdown").innerHTML = "Self destruct will occur in " + (destructTimer/(framesPerSecond * 1000));
+						document.getElementById("countdown").innerHTML = "Self destruct will occur in " + Math.ceil(destructTimer/(framesPerSecond * 1000));
 					} else {
 						document.getElementById("outOfBoundsContainer").style.display = "none";
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
@@ -615,7 +614,9 @@
 			socket.on('all_data', function(data){
 				ctx.clearRect(0, 0, c.width, c.height);
 
-				draw(rightkeydown, leftkeydown, upkeydown, downkeydown);
+				if (inYet == true && alive == true) {
+					draw(rightkeydown, leftkeydown, upkeydown, downkeydown);
+				}
 
 				document.getElementById("killCounter").innerHTML = "Leaderboard<br>------------------------------<br>" + data.killCounterString;
 				document.getElementById("abletsAmount").innerHTML = "Ablets: " + data.players[myIndex].ablets;

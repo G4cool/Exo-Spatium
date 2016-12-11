@@ -128,16 +128,18 @@ function updateFrame(){
 			// Increment timer between bullet fires
 			players[playerIter].timeBetweenBullets++;
 
-			console.log("dist: " + (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y))));
-
 			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > travelAreaRadius) {
-			//if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > 1) {
 				players[playerIter].outOfBounds = true;
 				players[playerIter].destructTimer -= 1000;
 			} else {
 				players[playerIter].outOfBounds = false;
 				players[playerIter].destructTimer = 5000*FRAMES_PER_SECOND;
 			}
+
+			if (players[playerIter].destructTimer <= 0) {
+				players[playerIter].alive = false;
+			}
+
 			if (players[playerIter].keypresses.isUpPressed) {
 				players[playerIter].y -= SHIP_SPEED;
 			}
