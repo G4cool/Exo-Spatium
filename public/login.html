@@ -1,0 +1,200 @@
+<html>
+<head>
+    <title>AeroBlue Login</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Loaders-->
+    <link type="text/css" rel="stylesheet" href="css/loaders.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="js/loaders.css.js"  media="screen,projection"/>
+    <!--Bulma-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bulma.css"  media="screen,projection"/>
+    
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+        * {
+           margin: 0;
+           padding: 0;
+        }
+
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden
+        }
+
+        #setUpDiv {
+            position: absolute;
+            background-color:rgba(0, 0, 0, 0.0);
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        #myusername {
+            color: #FFFFFF;
+        }
+
+        #bg {
+            position: fixed; 
+            top: -50%; 
+            left: -50%; 
+            width: 200%; 
+            height: 200%;
+        }
+
+        #setUpImage {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            margin: auto; 
+            min-width: 50%;
+            min-height: 50%;
+
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+        }
+
+        #animationContainer {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+
+        #circle {
+            background-color: rgba(0,0,0,0);
+            border:2px solid rgba(13,185,255,1.0);
+            border-right:2px solid rgba(0,0,0,0);
+            border-left:2px solid rgba(0,0,0,0);
+            border-radius:50px;
+            width:100px; /* 50px * 2 */
+            height:100px; /* 50px * 2 */
+            position: relative;
+            top:-50px;
+            left:-50px; /* 100px/2 */
+            margin:0 auto;
+            -moz-animation:spinPulse 1s infinite ease-in-out;
+            -webkit-animation:spinPulse 1s infinite linear;
+        }
+
+        #circle1 {
+            background-color: rgba(0,0,0,0);
+            border:2px solid rgba(13,185,255,1.0);
+            border-left:2px solid rgba(0,0,0,0);
+            border-right:2px solid rgba(0,0,0,0);
+            border-radius:50px;
+            width:60px; /* 30px * 2 */
+            height:60px; /* 30px * 2 */
+            margin:0 auto;
+            position:relative;
+            top:-130px; /* 60px + (100px - 60px)/2 + 100px/2 */
+            left:-50px; /* 100px/2 */
+            -moz-animation:spinoffPulse 1s infinite linear;
+            -webkit-animation:spinoffPulse 1s infinite linear;
+        }
+
+        @-moz-keyframes spinPulse {
+            0% {
+                -moz-transform: rotate(160deg);
+            }
+
+            50% {
+                -moz-transform: rotate(145deg);
+            }
+
+            100% {
+                -moz-transform: rotate(-320deg);
+            };
+        }
+
+        @-moz-keyframes spinoffPulse {
+            0% {
+                -moz-transform: rotate(0deg);
+            }
+
+            100% {
+                -moz-transform: rotate(360deg);
+            };
+        }
+
+        @-webkit-keyframes spinPulse {
+            0% {
+                -webkit-transform: rotate(160deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(145deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(-320deg);
+            };
+        }
+
+        @-webkit-keyframes spinoffPulse {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            };
+        }
+
+        .inButtonRow {
+            float: left;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="setUpDiv" class="row">
+        <script type="text/javascript">
+            document.getElementById("setUpDiv").style.width = window.innerWidth;
+            document.getElementById("setUpDiv").style.height = window.innerHeight;
+        </script>
+        <div class="col s12">
+            <div class="card-panel blue z-depth-0 darken-1">
+                <div class="row">
+                    <form id="usernameForm" onsubmit="return false" class="col s12">
+                        <div id="usernameContainer" class="row">
+                            <div class="input-field col s12">
+                                <input name="myusername" id="myusername" type="text" class="validate">
+                                <label for="myusername" class="white-text">Username</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input name="mypassword" id="mypassword" type="text" class="validate">
+                                <label for="mypassword" class="white-text">Password</label>
+                            </div>
+                        </div>
+                    </form>
+                    <div>
+                        <button id="submitButton" action="checkLogin.php" class="inButtonRow btn blue z-depth-0 lighten-1 waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bg">
+        <img id="setUpImage" src="images/example.jpg"/>
+    </div>
+
+    <!--MAKE CUSTOM ANIMATION!-->
+
+    <div id="animationContainer">
+        <div id="circle"></div>
+        <div id="circle1"></div>
+    </div>
+</body>
+</html>
