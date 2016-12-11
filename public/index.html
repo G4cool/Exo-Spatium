@@ -346,8 +346,6 @@
 			var mouseX = 0;
 			var mouseY = 0;
 
-			var countdownStartingVal = 5;
-
 			var shipImg = new Image();
 			shipImg.src = 'images/ship6.png';
 			var enemyShipImg = new Image();
@@ -513,22 +511,10 @@
 					if (outOfBounds == true) {
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "running";
 						document.getElementById("outOfBoundsContainer").style.display = "block";
-						/*
-						var newSecondsPassed = new Date().getTime() / 1000;
-						if (secondsPassed - newSecondsPassed)
-							*/
-						/*
-						function countdownFunc() {
-							countdownStartingVal--;
-						}
-						setInterval(countdownFunc(),10000000000000);
-						*/
 						document.getElementById("countdown").innerHTML = "Self destruct will occur in " + (destructTimer/(framesPerSecond * 1000));
-						console.log("destructTimer: " + Math.ceil(destructTimer/(framesPerSecond * 1000)));
 					} else {
 						document.getElementById("outOfBoundsContainer").style.display = "none";
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
-						//countdownStartingVal = 5;
 						document.getElementById("countdown").innerHTML = "Self destruct will occur in 5";
 					}
 				} else {

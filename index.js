@@ -130,11 +130,10 @@ function updateFrame(){
 
 			console.log("dist: " + (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y))));
 
-			//if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > travelAreaRadius) {
-			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > 1) {
+			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > travelAreaRadius) {
+			//if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > 1) {
 				players[playerIter].outOfBounds = true;
 				players[playerIter].destructTimer -= 1000;
-				console.log("destructTimer: " + Math.ceil(players[playerIter].destructTimer/(FRAMES_PER_SECOND * 1000)));
 			} else {
 				players[playerIter].outOfBounds = false;
 				players[playerIter].destructTimer = 5000*FRAMES_PER_SECOND;
