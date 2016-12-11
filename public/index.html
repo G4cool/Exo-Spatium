@@ -174,8 +174,8 @@
 			color: #D63200;
 			font-size: 25px;
 			text-transform: uppercase;
-			-moz-animation:redPulse 1s infinite ease-in-out;
-			-webkit-animation:redPulse 1s infinite ease-in-out;
+			-moz-animation:redPulse 2s infinite ease-in-out;
+			-webkit-animation:redPulse 2s infinite ease-in-out;
 		}
 
 		@-webkit-keyframes redPulse {
@@ -183,7 +183,7 @@
 				text-shadow: 0 0 9px #A32600;
 				opacity: 0.5;
 			}
-			14% {
+			7% {
 				text-shadow: 0 0 18px #D63200, 0 0 18px #D63200;
 				opacity: 1.0;
 			}
@@ -565,6 +565,9 @@
 							var elm = document.getElementById("countdownNumber");
 							var newOne = elm.cloneNode(true);
 							elm.parentNode.replaceChild(newOne, elm);
+							var elm2 = document.getElementById("outOfBoundsContainer");
+							var newOne2 = elm2.cloneNode(true);
+							elm2.parentNode.replaceChild(newOne2, elm2);
 						}
 					} else {
 						document.getElementById("outOfBoundsContainer").style.display = "none";
