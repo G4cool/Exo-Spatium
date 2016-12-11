@@ -24,7 +24,7 @@ const BULLET_SPEED = 20;
 
 const hitRadius = 20;
 
-const travelAreaRadius = 50000;
+const travelAreaRadius = 50000; // IN PIXELS???
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
