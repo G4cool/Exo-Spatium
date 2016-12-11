@@ -77,7 +77,7 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		quadrupleShot:false,
 		quintupleShot:false,
 		outOfBounds:false,
-		destructTimer:50000*FRAMES_PER_SECOND,
+		destructTimer:5000*FRAMES_PER_SECOND,
 		framesPerSecond:FRAMES_PER_SECOND,
 		keypresses:[isLeftPressed, isRightPressed, isUpPressed, isDownPressed, isSpacePressed],
 		makeBullet: function(x, y, dx, dy, rotation, playerX, playerY, mouseX, mouseY) {
@@ -128,15 +128,12 @@ function updateFrame(){
 			// Increment timer between bullet fires
 			players[playerIter].timeBetweenBullets++;
 
-			console.log("dist: " + (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y))));
-
-			//if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > travelAreaRadius) {
-			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > 1) {
+			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > travelAreaRadius) {
 				players[playerIter].outOfBounds = true;
 				players[playerIter].destructTimer -= 1000;
 			} else {
 				players[playerIter].outOfBounds = false;
-				players[playerIter].destructTimer = 50000*FRAMES_PER_SECOND;
+				players[playerIter].destructTimer = 5000*FRAMES_PER_SECOND;
 			}
 
 			if (players[playerIter].destructTimer <= 0) {
