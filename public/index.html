@@ -405,6 +405,8 @@
 			laserImg.src = 'images/laser.png';
 			var enemyLaserImg = new Image();
 			enemyLaserImg.src = 'images/enemy laser.png';
+			var testingSquareImg = new Image();
+			testingSquareImg.src = 'images/Testing Square.png'
 
 			var usernameSubmit = document.getElementById("usernameTextbox");
 			usernameSubmit.addEventListener("keydown", function (e) {
@@ -544,19 +546,22 @@
 					var myXDistFromCenterOfMinimap = minimapXCenter + x/500;
 					var myYDistFromCenterOfMinimap = minimapYCenter + y/500;
 
-			    	ctx.translate((window.innerWidth/2 + shipImg.width/2), (window.innerHeight/2 + shipImg.height/2));
+			    	//ctx.translate((window.innerWidth/2 + shipImg.width/2), (window.innerHeight/2 + shipImg.height/2));
+			    	ctx.translate((window.innerWidth/2 + testingSquareImg.width/2), (window.innerHeight/2 + testingSquareImg.height/2));
 
 					angle = -Math.atan2((window.innerWidth/2 - mouseX),(window.innerHeight/2 - mouseY));
 
 					ctx.rotate(angle);
 
-					ctx.translate(-(window.innerWidth/2 + shipImg.width/2), -(window.innerHeight/2 + shipImg.height/2));
+					//ctx.translate(-(window.innerWidth/2 + shipImg.width/2), -(window.innerHeight/2 + shipImg.height/2));
+					ctx.translate(-(window.innerWidth/2 + testingSquareImg.width/2), -(window.innerHeight/2 + testingSquareImg.height/2));
 
 			    	myX = x;
 			    	myY = y;
 			    	myXFromCenter = (window.innerWidth/2) - x;
 			    	myYFromCenter = (window.innerHeight/2) - y;
-					ctx.drawImage(shipImg, (window.innerWidth/2), (window.innerHeight/2));
+					//ctx.drawImage(shipImg, (window.innerWidth/2), (window.innerHeight/2));
+					ctx.drawImage(testingSquareImg, (window.innerWidth/2), (window.innerHeight/2));
 
 					ctx.restore();
 
@@ -601,7 +606,7 @@
 				ctx.restore();
 			}
 
-			function drawBullet(bullet, rotation, index) {
+			function drawBullet(bullet, rotation, index, playerX, playerY) {
 				if (index == myIndex) {
 					ctx.save();
 					myBulletX = bullet.x;
@@ -710,7 +715,7 @@
 						}
 						drawPlayer(data.players[i].x, data.players[i].y, data.players[i].color, i, data.players[i].rotation, data.players[i].imgWidth, data.players[i].imgHeight, data.players[i].outOfBounds, data.players[i].destructTimer, data.players[i].framesPerSecond);
 						for (var j = 0; j < data.players[i].bullets.length; j++) {
-							drawBullet(data.players[i].bullets[j], data.players[i].bullets[j].rotation, i);
+							drawBullet(data.players[i].bullets[j], data.players[i].bullets[j].rotation, i, data.players[i].x, data.players[i].y);
 						}
 					}
 				}
