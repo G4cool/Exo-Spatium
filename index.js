@@ -217,7 +217,11 @@ io.on('connection', function(socket){
 
 	var myColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
-	makePlayer(50, 50, 0, socket.id, myColor);
+	var randStartX = Math.floor(Math.random() * (100 - (-100) + 1)) + (-100); // Math.floor(Math.random() * (max - min + 1)) + min;
+	var randStartY = Math.floor(Math.random() * (100 - (-100) + 1)) + (-100); // Math.floor(Math.random() * (max - min + 1)) + min;
+
+	makePlayer(randStartX, randStartY, 0, socket.id, myColor);
+	console.log("randStartX: " + randStartX + ", randStartY: " + randStartY);
 
 	console.log("a user connected: " + socket.id);
 	socket.on('username', function(message) {
