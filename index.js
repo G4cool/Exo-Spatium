@@ -223,7 +223,6 @@ io.on('connection', function(socket){
 	var randStartY = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
 
 	makePlayer(randStartX, randStartY, 0, socket.id, myColor);
-	console.log("randStartX: " + randStartX + ", randStartY: " + randStartY);
 
 	console.log("a user connected: " + socket.id);
 	socket.on('username', function(message) {
