@@ -164,6 +164,15 @@
 			color: #0DB9FF;
 		}
 
+		#outOfBoundsContainer {
+			width: 200px;
+			height: 200px;
+			margin: auto;
+  			position: absolute;
+  			top: 0; left: 0; bottom: 0; right: 0;
+			text-align: center;
+		}
+
     	#killCounter {
     		text-align: center;
     		text-shadow: #0DB9FF 0 0 5px;
@@ -282,6 +291,10 @@
     	<br>
     	<div id="countdown">Self destruct will occur in 5</div>
     </div>
+    <script type="text/javascript">
+    	document.getElementById("outOfBoundsContainer").width = window.innerWidth/3;
+    	document.getElementById("outOfBoundsContainer").height = window.innerHeight/3;
+    </script>
     
 	<div id="gameDiv" style="display: none;">
 		<canvas id="myCanvas" width="800" height="800"></canvas>

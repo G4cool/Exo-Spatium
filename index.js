@@ -128,6 +128,8 @@ function updateFrame(){
 			// Increment timer between bullet fires
 			players[playerIter].timeBetweenBullets++;
 
+			console.log("dist: " + (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y))));
+
 			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > travelAreaRadius) {
 				players[playerIter].outOfBounds = true;
 				players[playerIter].destructTimer -= 1000;
