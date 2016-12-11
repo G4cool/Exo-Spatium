@@ -318,6 +318,7 @@ io.on('connection', function(socket){
 	});
 });
 
-setInterval(function(){updateFrame();}, 1000/FRAMES_PER_SECOND);
+//setInterval(function(){updateFrame();}, (1000/FRAMES_PER_SECOND));
+setInterval(function(){updateFrame();}, 16);
 
 

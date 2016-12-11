@@ -194,15 +194,15 @@
 		}
 
 		#countdownNumber {
-			-moz-animation:sizePulse 1s infinite ease-in-out;
-			-webkit-animation:sizePulse 1s infinite ease-in-out;
+			-moz-animation:sizePulse 2s infinite ease-in-out;
+			-webkit-animation:sizePulse 2s infinite ease-in-out;
 		}
 
 		@-webkit-keyframes sizePulse {
 			0% {
 				font-size: 25px; /* Defined above in #outOfBoundsContainer */
 			}
-			14% {
+			7% {
 				font-size: 32px;
 			}
 			100% {
@@ -561,6 +561,11 @@
 						document.getElementById("countdownNumber").style.webkitAnimationPlayState = "running";
 						document.getElementById("outOfBoundsContainer").style.display = "block";
 						document.getElementById("countdownNumber").innerHTML = "" + Math.ceil(destructTimer/(framesPerSecond * 1000));
+						if (destructTimer/(framesPerSecond * 1000) % Math.ceil(destructTimer/(framesPerSecond * 1000)) == 0) {
+							var elm = document.getElementById("countdownNumber");
+							var newOne = elm.cloneNode(true);
+							elm.parentNode.replaceChild(newOne, elm);
+						}
 					} else {
 						document.getElementById("outOfBoundsContainer").style.display = "none";
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
