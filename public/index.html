@@ -193,6 +193,23 @@
 			}
 		}
 
+		#countdownNumber {
+			-moz-animation:sizePulse 1s infinite ease-in-out;
+			-webkit-animation:sizePulse 1s infinite ease-in-out;
+		}
+
+		@-webkit-keyframes sizePulse {
+			0% {
+				font-size: 25px; /* Defined above in #outOfBoundsContainer */
+			}
+			14% {
+				font-size: 32px;
+			}
+			100% {
+				font-size: 25px; /* Define above in #outOfBoundsContainer */
+			}
+		}
+
     	#killCounter {
     		text-align: center;
     		text-shadow: #0DB9FF 0 0 5px;
@@ -309,7 +326,8 @@
     	<br>
     	<div>Turn back</div>
     	<br>
-    	<div id="countdown">Self destruct will occur in <div id="countdownNumber">5</div></div>
+    	<div>Self destruct will occur in: </div>
+    	<div id="countdownNumber">5</div>
     </div>
     
 	<div id="gameDiv" style="display: none;">
@@ -318,9 +336,11 @@
 			document.getElementById("myCanvas").width = window.innerWidth;
 			document.getElementById("myCanvas").height = window.innerHeight;
 
+			// Pause animations
 			document.getElementById("circle").style.webkitAnimationPlayState = "paused";
 			document.getElementById("circle1").style.webkitAnimationPlayState = "paused";
 			document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
+			document.getElementById("countdownNumber").style.webkitAnimationPlayState = "paused";
 
 			var myIndex = 0;
 			var myX = 0;
@@ -538,12 +558,14 @@
 
 					if (outOfBounds == true) {
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "running";
+						document.getElementById("countdownNumber").style.webkitAnimationPlayState = "running";
 						document.getElementById("outOfBoundsContainer").style.display = "block";
-						document.getElementById("countdown").innerHTML = "Self destruct will occur in " + Math.ceil(destructTimer/(framesPerSecond * 1000));
+						document.getElementById("countdownNumber").innerHTML = "" + Math.ceil(destructTimer/(framesPerSecond * 1000));
 					} else {
 						document.getElementById("outOfBoundsContainer").style.display = "none";
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
-						document.getElementById("countdown").innerHTML = "Self destruct will occur in 5";
+						document.getElementById("countdownNumber").style.webkitAnimationPlayState = "paused";
+						document.getElementById("countdownNumber").innerHTML = "5";
 					}
 				} else {
 					ctx.save();
