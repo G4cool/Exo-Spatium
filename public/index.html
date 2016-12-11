@@ -274,6 +274,14 @@
 	        <div id="abletsAmount"></div>
 	    </div>
     </div>
+
+    <div id="outOfBoundsContainer" style="display: none;">
+    	<div>Out of bounds</div>
+    	<br>
+    	<div>Turn back</div>
+    	<br>
+    	<div id="countdown">Self destruct will occur in 5</div>
+    </div>
     
 	<div id="gameDiv" style="display: none;">
 		<canvas id="myCanvas" width="800" height="800"></canvas>
@@ -283,6 +291,7 @@
 
 			document.getElementById("circle").style.webkitAnimationPlayState = "paused";
 			document.getElementById("circle1").style.webkitAnimationPlayState = "paused";
+			document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
 
 			var myIndex = 0;
 			var myX = 0;
@@ -336,6 +345,8 @@
 			var spacekeydown = false;
 			var mouseX = 0;
 			var mouseY = 0;
+
+			var countdownStartingVal = 5;
 
 			var shipImg = new Image();
 			shipImg.src = 'images/ship6.png';
@@ -465,7 +476,7 @@
 				socket.emit('boughtQuintupleShot',"They bought quintuple shot.");
 			}
 
-			function drawPlayer(x, y, color, index, rotation, imgWidth, imgHeight) {
+			function drawPlayer(x, y, color, index, rotation, imgWidth, imgHeight, outOfBounds, destructTimer, framesPerSecond) {
 				ctx.save();
 
 				ctx.fillRect((window.innerWidth + 20), (window.innerHeight + 20), 200, 160);
@@ -498,6 +509,28 @@
 					ctx.drawImage(shipImg, (window.innerWidth/2), (window.innerHeight/2));
 
 					ctx.restore();
+
+					if (outOfBounds == true) {
+						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "running";
+						document.getElementById("outOfBoundsContainer").style.display = "block";
+						/*
+						var newSecondsPassed = new Date().getTime() / 1000;
+						if (secondsPassed - newSecondsPassed)
+							*/
+						/*
+						function countdownFunc() {
+							countdownStartingVal--;
+						}
+						setInterval(countdownFunc(),10000000000000);
+						*/
+						document.getElementById("countdown").innerHTML = "Self destruct will occur in " + (destructTimer/(framesPerSecond * 1000));
+						console.log("destructTimer: " + Math.ceil(destructTimer/(framesPerSecond * 1000)));
+					} else {
+						document.getElementById("outOfBoundsContainer").style.display = "none";
+						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
+						//countdownStartingVal = 5;
+						document.getElementById("countdown").innerHTML = "Self destruct will occur in 5";
+					}
 				} else {
 					ctx.save();
 
@@ -624,7 +657,7 @@
 					if (data.players[i].alive == true) {
 						if (i != myIndex) {
 						}
-						drawPlayer(data.players[i].x, data.players[i].y, data.players[i].color, i, data.players[i].rotation, data.players[i].imgWidth, data.players[i].imgHeight);
+						drawPlayer(data.players[i].x, data.players[i].y, data.players[i].color, i, data.players[i].rotation, data.players[i].imgWidth, data.players[i].imgHeight, data.players[i].outOfBounds, data.players[i].destructTimer, data.players[i].framesPerSecond);
 						for (var j = 0; j < data.players[i].bullets.length; j++) {
 							drawBullet(data.players[i].bullets[j], data.players[i].bullets[j].rotation, i);
 						}

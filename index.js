@@ -76,6 +76,9 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		tripleShot:false,
 		quadrupleShot:false,
 		quintupleShot:false,
+		outOfBounds:false,
+		destructTimer:5000*FRAMES_PER_SECOND,
+		framesPerSecond:FRAMES_PER_SECOND,
 		keypresses:[isLeftPressed, isRightPressed, isUpPressed, isDownPressed, isSpacePressed],
 		makeBullet: function(x, y, dx, dy, rotation, playerX, playerY, mouseX, mouseY) {
 			var bullet = {
@@ -127,19 +130,27 @@ function updateFrame(){
 
 			console.log("dist: " + (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y))));
 
-			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) - SHIP_SPEED <= travelAreaRadius) {
-				if (players[playerIter].keypresses.isUpPressed) {
-					players[playerIter].y -= SHIP_SPEED;
-				}
-				if (players[playerIter].keypresses.isDownPressed) {
-					players[playerIter].y += SHIP_SPEED;
-				}
-				if (players[playerIter].keypresses.isLeftPressed) {
-					players[playerIter].x += SHIP_SPEED;
-				}
-				if (players[playerIter].keypresses.isRightPressed) {
-					players[playerIter].x -= SHIP_SPEED;
-				}
+			//if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > travelAreaRadius) {
+			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) > 1) {
+				players[playerIter].outOfBounds = true;
+				players[playerIter].destructTimer -= 1000;
+				console.log("destructTimer: " + Math.ceil(players[playerIter].destructTimer/(FRAMES_PER_SECOND * 1000)));
+			} else {
+				players[playerIter].outOfBounds = false;
+				players[playerIter].destructTimer = 5000*FRAMES_PER_SECOND;
+			}
+			if (players[playerIter].keypresses.isUpPressed) {
+				players[playerIter].y -= SHIP_SPEED;
+			}
+			if (players[playerIter].keypresses.isDownPressed) {
+				players[playerIter].y += SHIP_SPEED;
+			}
+			if (players[playerIter].keypresses.isLeftPressed) {
+				players[playerIter].x += SHIP_SPEED;
+			}
+			if (players[playerIter].keypresses.isRightPressed) {
+				players[playerIter].x -= SHIP_SPEED;
+			}
 			if (players[playerIter].keypresses.isSpacePressed) {
 				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/4) { // Firerate
 					var originalAngle = -1 * Math.atan2((players[playerIter].mouseY - players[playerIter].windowHeight/2),(players[playerIter].mouseX - players[playerIter].windowWidth/2)) * 180 / Math.PI;
@@ -304,3 +315,5 @@ io.on('connection', function(socket){
 });
 
 setInterval(function(){updateFrame();}, 1000/FRAMES_PER_SECOND);
+
+
