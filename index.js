@@ -57,7 +57,7 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		mouseY:0,
 		username:"",
 		alive:true,
-		ablets:1000000,
+		ablets:0,
 		windowWidth:0,
 		windowHeight:0,
 		color:color,
