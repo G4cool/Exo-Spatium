@@ -24,6 +24,8 @@ const BULLET_SPEED = 20;
 
 const hitRadius = 20;
 
+const travelAreaRadius = 50000;
+
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
 });
@@ -217,8 +219,11 @@ io.on('connection', function(socket){
 
 	var myColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
+	/* ALERT */
 	var min = -10000;
 	var max = 10000;
+	/* ALERT */
+	// THE ABSOLUTE VALUE OF BOTH min AND max HAVE TO BE LESS THAN travelAreaRadius (AS OF RIGHT NOW, travelAreaRadius = 50000)
 	var randStartX = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
 	var randStartY = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
 
