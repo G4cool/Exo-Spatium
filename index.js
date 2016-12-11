@@ -104,7 +104,6 @@ function getPlayerById(current_socket_id){
 			}
 		}
 	}
-	//throw "This person: '" + current_socket_id + "' does not have a ship!"
 }
 
 function getPlayerByIdTwo(current_socket_id) {
@@ -115,17 +114,11 @@ function getPlayerByIdTwo(current_socket_id) {
 			}
 		}
 	}
-	//throw "This person: '" + current_socket_id + "' does not have a ship!"
 }
 
 function updateFrame(){
 	killCounterString = "";
 	for (playerIter = 0; playerIter < players.length; playerIter++) {
-		/*
-		if ((players.length == 1) && (typeof players[playerIter] !== 'undefined')) {
-			io.sockets.emit('game_over', "It's over.");
-		}
-		*/
 		if(typeof players[playerIter] !== 'undefined'){
 			// Increment timer between bullet fires
 			players[playerIter].timeBetweenBullets++;
