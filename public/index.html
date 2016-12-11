@@ -149,6 +149,19 @@
 		    };
 		}
 
+		.inButtonRow {
+			float: left;
+			margin-left: 20px;
+		}
+
+		#orText {
+			vertical-align: middle;
+			text-align: center;
+			margin-left: 15px;
+			margin-right: 15px;
+			font-size: 24px;
+		}
+
     	#HUDContainer {
     		position: absolute;
     	}
@@ -239,9 +252,12 @@
 				        	</div>
 				    	</div>
 					</form>
-					<button id="submitButton" onclick="updateLobbyClient()" class="btn blue z-depth-0 lighten-1 waves-effect waves-light" type="submit" name="action">Submit
-    					<i class="material-icons right">send</i>
- 					</button>
+					<div>
+						<button id="submitButton" onclick="updateLobbyClient()" class="inButtonRow btn blue z-depth-0 lighten-1 waves-effect waves-light" type="submit" name="action">Submit
+		    				<i class="material-icons right">send</i>
+		 				</button>
+		 				<button id="loginButton" action="login.php" class="inButtonRow btn blue z-depth-0 lighten-1 waves-effect waves-light" type="submit" name="action">Login</button>
+		 			</div>
           		</div>
         	</div>
       	</div>
