@@ -285,11 +285,7 @@
     </div>
 
     <div id="outOfBoundsContainer" style="display: none;">
-    	<div>Out of bounds</div>
-    	<br>
-    	<div>Turn back</div>
-    	<br>
-    	<div id="countdown">Self destruct will occur in 5</div>
+    	<div id="countdown">Out of bounds<br>Turn back<br>Self destruct will occur in 5</div>
     </div>
     <script type="text/javascript">
     	document.getElementById("outOfBoundsContainer").width = window.innerWidth/3;
@@ -523,11 +519,11 @@
 					if (outOfBounds == true) {
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "running";
 						document.getElementById("outOfBoundsContainer").style.display = "block";
-						document.getElementById("countdown").innerHTML = "Self destruct will occur in " + Math.ceil(destructTimer/(framesPerSecond * 1000));
+						document.getElementById("countdown").innerHTML = "Out of bounds<br>Turn back<br>Self destruct will occur in  " + Math.ceil(destructTimer/(framesPerSecond * 1000));
 					} else {
 						document.getElementById("outOfBoundsContainer").style.display = "none";
 						document.getElementById("outOfBoundsContainer").style.webkitAnimationPlayState = "paused";
-						document.getElementById("countdown").innerHTML = "Self destruct will occur in 5";
+						document.getElementById("countdown").innerHTML = "Out of bounds<br>Turn back<br>Self destruct will occur in 5";
 					}
 				} else {
 					ctx.save();
