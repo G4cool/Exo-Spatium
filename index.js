@@ -24,7 +24,7 @@ const BULLET_SPEED = 20;
 
 const hitRadius = 20;
 
-const travelAreaRadius = 50000; // IN PIXELS???
+const travelAreaRadius = 10000; // IN PIXELS???
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
@@ -125,18 +125,21 @@ function updateFrame(){
 			// Increment timer between bullet fires
 			players[playerIter].timeBetweenBullets++;
 
-			if (players[playerIter].keypresses.isUpPressed) {
-				players[playerIter].y -= SHIP_SPEED;
-			}
-			if (players[playerIter].keypresses.isDownPressed) {
-				players[playerIter].y += SHIP_SPEED;
-			}
-			if (players[playerIter].keypresses.isLeftPressed) {
-				players[playerIter].x += SHIP_SPEED;
-			}
-			if (players[playerIter].keypresses.isRightPressed) {
-				players[playerIter].x -= SHIP_SPEED;
-			}
+			console.log("dist: " + (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y))));
+
+			if (Math.sqrt((players[playerIter].x*players[playerIter].x) + (players[playerIter].y*players[playerIter].y)) - SHIP_SPEED <= travelAreaRadius) {
+				if (players[playerIter].keypresses.isUpPressed) {
+					players[playerIter].y -= SHIP_SPEED;
+				}
+				if (players[playerIter].keypresses.isDownPressed) {
+					players[playerIter].y += SHIP_SPEED;
+				}
+				if (players[playerIter].keypresses.isLeftPressed) {
+					players[playerIter].x += SHIP_SPEED;
+				}
+				if (players[playerIter].keypresses.isRightPressed) {
+					players[playerIter].x -= SHIP_SPEED;
+				}
 			if (players[playerIter].keypresses.isSpacePressed) {
 				if (players[playerIter].timeBetweenBullets > FRAMES_PER_SECOND/4) { // Firerate
 					var originalAngle = -1 * Math.atan2((players[playerIter].mouseY - players[playerIter].windowHeight/2),(players[playerIter].mouseX - players[playerIter].windowWidth/2)) * 180 / Math.PI;
@@ -219,13 +222,11 @@ io.on('connection', function(socket){
 
 	var myColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
-	/* ALERT */
-	var min = -10000;
-	var max = 10000;
-	/* ALERT */
-	// THE ABSOLUTE VALUE OF BOTH min AND max HAVE TO BE LESS THAN travelAreaRadius (AS OF RIGHT NOW, travelAreaRadius = 50000)
+	var max = Math.floor(travelAreaRadius/(Math.sqrt(2)));
+	var min = -max;
 	var randStartX = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
 	var randStartY = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
+	console.log(randStartX + ", " + randStartY);
 
 	makePlayer(randStartX, randStartY, 0, socket.id, myColor);
 
