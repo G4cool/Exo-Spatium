@@ -217,8 +217,10 @@ io.on('connection', function(socket){
 
 	var myColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
-	var randStartX = Math.floor(Math.random() * (100 - (-100) + 1)) + (-100); // Math.floor(Math.random() * (max - min + 1)) + min;
-	var randStartY = Math.floor(Math.random() * (100 - (-100) + 1)) + (-100); // Math.floor(Math.random() * (max - min + 1)) + min;
+	var min = -10000;
+	var max = 10000;
+	var randStartX = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
+	var randStartY = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
 
 	makePlayer(randStartX, randStartY, 0, socket.id, myColor);
 	console.log("randStartX: " + randStartX + ", randStartY: " + randStartY);
