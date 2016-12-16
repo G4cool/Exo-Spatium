@@ -698,7 +698,9 @@
 
 				document.getElementById("killCounter").innerHTML = "Leaderboard<br>------------------------------<br>" + data.killCounterString;
 				document.getElementById("abletsAmount").innerHTML = "Ablets: " + data.players[myIndex].ablets;
-				document.getElementById("abletsAmountShop").innerHTML = "Ablets: " + data.players[myIndex].ablets;
+				if (alive == false) {
+					document.getElementById("abletsAmountShop").innerHTML = "Ablets: " + data.players[myIndex].ablets;
+				}
 
 				// Draw minimap
 				ctx.beginPath();
