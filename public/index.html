@@ -507,6 +507,16 @@
 				doneWithShop = true;
 				inYet = true;
 				goBackToGame = true;
+
+				const travelAreaRadius = 10000; // IN PIXELS???, GET FROM INDEX.JS!!!
+
+				var max = Math.floor(travelAreaRadius/(Math.sqrt(2)));
+				var min = -max;
+				var randSpawnX = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
+				var randSpawnY = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
+
+				data.players[myIndex].x = randSpawnX;
+				data.players[myIndex].x = randSpawnY;
 			}
 
 			function buyDoubleShot() {
