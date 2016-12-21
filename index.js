@@ -79,6 +79,7 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 		outOfBounds:false,
 		destructTimer:5000*FRAMES_PER_SECOND,
 		framesPerSecond:FRAMES_PER_SECOND,
+		respawn:false,
 		keypresses:[isLeftPressed, isRightPressed, isUpPressed, isDownPressed, isSpacePressed],
 		makeBullet: function(x, y, dx, dy, rotation, playerX, playerY, mouseX, mouseY) {
 			var bullet = {
@@ -138,6 +139,15 @@ function updateFrame(){
 
 			if (players[playerIter].destructTimer <= 0) {
 				players[playerIter].alive = false;
+			}
+
+			if (players[playerIter].respawn = true) {
+				var max = Math.floor(travelAreaRadius/(Math.sqrt(2)));
+				var min = -max;
+				var randSpawnX = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
+				var randSpawnY = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
+				players[playerIter].x = randSpawnX;
+				players[playerIter].y = randSpawnY;
 			}
 
 			if (players[playerIter].keypresses.isUpPressed) {
@@ -203,6 +213,7 @@ function updateFrame(){
 				killCounterArray[playerIter] = playersForKillCounter[playerIter].killCounter;
 			}
 		}
+
 		players.clean(undefined);
 	}
 	for (playerIterTwo = 0; playerIterTwo < playersForKillCounter.length; playerIterTwo++) {
@@ -309,6 +320,7 @@ io.on('connection', function(socket){
 			players[index].imgWidth = data[10];
 			players[index].imgHeight = data[11];
 			players[index].alive = data[12];
+			players[index].respawn = data[13];
 		} catch (e) {
 			console.log(e);
 		}

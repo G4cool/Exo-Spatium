@@ -381,6 +381,8 @@
 
 			var doneWithShop = true;
 
+			var respawn = false;
+
 			var minimapRadius = 50;
 			var minimapXCenter = window.innerWidth - (minimapRadius + 10);
 			var minimapYCenter = minimapRadius + 10;
@@ -421,8 +423,9 @@
 			}
 
 			function sendData(){
-				var data = [rightkeydown, leftkeydown, upkeydown, downkeydown, spacekeydown, mouseX, mouseY, window.innerWidth, window.innerHeight, angle, shipImg.width, shipImg.height, alive];
+				var data = [rightkeydown, leftkeydown, upkeydown, downkeydown, spacekeydown, mouseX, mouseY, window.innerWidth, window.innerHeight, angle, shipImg.width, shipImg.height, alive, respawn];
 				socket.emit('user_input_state', data);
+				respawn = false;
 			}
 
 			window.onkeydown = function(e){
@@ -508,15 +511,7 @@
 				inYet = true;
 				goBackToGame = true;
 
-				const travelAreaRadius = 10000; // IN PIXELS???, GET FROM INDEX.JS!!!
-
-				var max = Math.floor(travelAreaRadius/(Math.sqrt(2)));
-				var min = -max;
-				var randSpawnX = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
-				var randSpawnY = Math.floor(Math.random() * (max - min + 1)) + min; // IN PIXELS???
-
-				data.players[myIndex].x = randSpawnX;
-				data.players[myIndex].x = randSpawnY;
+				respawn = true;
 			}
 
 			function buyDoubleShot() {
