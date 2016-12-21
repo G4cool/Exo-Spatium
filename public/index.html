@@ -692,7 +692,7 @@
 			socket.on('all_data', function(data){
 				ctx.clearRect(0, 0, c.width, c.height);
 
-				if (inYet == true && alive == true) {
+				if (inYet == true) {
 					draw(rightkeydown, leftkeydown, upkeydown, downkeydown);
 				}
 
