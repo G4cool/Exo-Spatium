@@ -381,8 +381,6 @@
 
 			var doneWithShop = true;
 
-			var respawn = false;
-
 			var minimapRadius = 50;
 			var minimapXCenter = window.innerWidth - (minimapRadius + 10);
 			var minimapYCenter = minimapRadius + 10;
@@ -423,9 +421,8 @@
 			}
 
 			function sendData(){
-				var data = [rightkeydown, leftkeydown, upkeydown, downkeydown, spacekeydown, mouseX, mouseY, window.innerWidth, window.innerHeight, angle, shipImg.width, shipImg.height, alive, respawn];
+				var data = [rightkeydown, leftkeydown, upkeydown, downkeydown, spacekeydown, mouseX, mouseY, window.innerWidth, window.innerHeight, angle, shipImg.width, shipImg.height, alive];
 				socket.emit('user_input_state', data);
-				respawn = false;
 			}
 
 			window.onkeydown = function(e){
@@ -511,7 +508,7 @@
 				inYet = true;
 				goBackToGame = true;
 
-				respawn = true;
+				socket.emit('respawn');
 			}
 
 			function buyDoubleShot() {
