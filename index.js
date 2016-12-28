@@ -103,11 +103,11 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 	playersForKillCounter.push(player);
 }
 
-function makeDrop(startX, startY, kind) {
+function makeDrop(startX, startY, type) {
 	var drop = {
 		x:startX,
 		y:startY,
-		kind:kind,
+		type:type,
 		time:0
 	}
 	drops.push(drop);
@@ -232,6 +232,7 @@ function updateFrame(){
 	}
 
 	// Creating drops
+	/*
 	var dropNumber = Math.round(Math.random()*360) + 1;
 	if (dropNumber == 1) {
 		makeDrop(0, 0, "fireRate");
@@ -243,10 +244,12 @@ function updateFrame(){
 		makeDrop(0, 0, "shield");
 		console.log("Shield drop");
 	}
+	*/
 
 	var game_data = {
 		players: players,
-		killCounterString: killCounterString
+		killCounterString: killCounterString,
+		drops: drops
 	};
 	io.sockets.emit('all_data', game_data);
 }
@@ -268,6 +271,7 @@ io.on('connection', function(socket){
 
 	makePlayer(randStartX, randStartY, 0, socket.id, myColor);
 	makeDrop(randStartX, randStartY, "fireRate");
+	console.log("Firerate drop");
 
 	console.log("a user connected: " + socket.id);
 	socket.on('username', function(message) {

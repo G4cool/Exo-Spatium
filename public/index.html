@@ -409,8 +409,8 @@
 			var testingSquareImg = new Image();
 			testingSquareImg.src = 'images/Testing Square.png'
 
-			var fireRateIncreaseDrop = new Image();
-			fireRateIncreaseDrop.src = 'images/Fire Rate Increase Drop';
+			var fireRateIncreaseDropImg = new Image();
+			fireRateIncreaseDropImg.src = 'images/Fire Rate Increase Drop.png';
 
 			var usernameSubmit = document.getElementById("usernameTextbox");
 			usernameSubmit.addEventListener("keydown", function (e) {
@@ -628,7 +628,7 @@
 					//ctx.translate((bullet.x + myBulletXFromCenter + shipImg.width/2 - laserImg.width/2), (bullet.y + myBulletYFromCenter + shipImg.height/2 - laserImg.height/2));
 					ctx.translate((bullet.x - laserImg.width/2 - playerX + window.innerWidth/2), (bullet.y - laserImg.height/2 - playerY + window.innerHeight/2));
 					ctx.rotate(rotation);
-					console.log("rotation: " + rotation);
+					//console.log("rotation: " + rotation);
 					//ctx.translate(-(bullet.x + myBulletXFromCenter + shipImg.width/2 - laserImg.width/2), -(bullet.y + myBulletYFromCenter + shipImg.height/2 - laserImg.height/2));
 					ctx.translate(-(bullet.x - laserImg.width/2 - playerX + window.innerWidth/2), -(bullet.y - laserImg.height/2 - playerY + window.innerHeight/2));
 
@@ -646,6 +646,11 @@
 					ctx.drawImage(enemyLaserImg, (correctBulletX + shipImg.width/2), (correctBulletY + shipImg.height/2));
 				}
 				ctx.restore();
+			}
+
+			function drawDrop(x, y, type, playerX, playerY) {
+				ctx.drawImage(fireRateIncreaseDropImg, (x + playerX + window.innerWidth/2 - fireRateIncreaseDropImg.width/2), (y + playerY + window.innerHeight/2 - fireRateIncreaseDropImg.height/2));
+				console.log("the drop has been drawn")
 			}
 
 			function drawBackground() {
@@ -724,7 +729,7 @@
       			ctx.stroke();
       			ctx.closePath();
 
-				for(var i = 0; i < data.players.length; i++){
+				for (var i = 0; i < data.players.length; i++){
 
 					if (data.players[i].alive == true) {
 						if (i != myIndex) {
@@ -732,6 +737,9 @@
 						drawPlayer(data.players[i].x, data.players[i].y, data.players[i].color, i, data.players[i].rotation, data.players[i].imgWidth, data.players[i].imgHeight, data.players[i].outOfBounds, data.players[i].destructTimer, data.players[i].framesPerSecond);
 						for (var j = 0; j < data.players[i].bullets.length; j++) {
 							drawBullet(data.players[i].bullets[j], data.players[i].bullets[j].rotation, i, data.players[i].x, data.players[i].y);
+						}
+						for (var l = 0; l < data.drops.length; l++) {
+							drawDrop(data.drops[l].x, data.drops[l].y, data.drops[l].type, data.players[i].x, data.players[i].y);
 						}
 					}
 				}
