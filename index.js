@@ -8,7 +8,7 @@ var clientNum = 0;
 var players = [];
 var playersForKillCounter = [];
 
-var pickups = [];
+var drops = [];
 
 var mouseX = 0;
 var mouseY = 0;
@@ -103,14 +103,14 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 	playersForKillCounter.push(player);
 }
 
-function makePickup(startX, startY, image) {
-	var pickup = {
+function makeDrop(startX, startY, image) {
+	var drop = {
 		x:startX,
 		y:startY,
 		image:image,
 		time:0
 	}
-	pickups.push(pickup);
+	drops.push(drop);
 }
 
 function getPlayerById(current_socket_id){
