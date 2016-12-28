@@ -232,13 +232,16 @@ function updateFrame(){
 	}
 
 	// Creating drops
-	var dropNumber = Math.round(Math.random()*3) + 1;
+	var dropNumber = Math.round(Math.random()*100) + 1;
 	if (dropNumber == 1) {
 		makeDrop(0, 0, fireRate);
+		console.log("Firerate drop");
 	} else if (dropNumber == 2) {
 		makeDrop(0, 0, power);
+		console.log("Power drop");
 	} else if (dropNumber == 3) {
 		makeDrop(0, 0, shield);
+		console.log("Shield drop");
 	}
 
 	var game_data = {
