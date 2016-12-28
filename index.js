@@ -103,11 +103,11 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 	playersForKillCounter.push(player);
 }
 
-function makeDrop(startX, startY, image) {
+function makeDrop(startX, startY, kind) {
 	var drop = {
 		x:startX,
 		y:startY,
-		image:image,
+		kind:kind,
 		time:0
 	}
 	drops.push(drop);
@@ -229,6 +229,16 @@ function updateFrame(){
 			}
 		}
 		playersForKillCounter.clean(undefined);
+	}
+
+	// Creating drops
+	var dropNumber = Math.round(Math.random()*3) + 1;
+	if (dropNumber == 1) {
+		makeDrop(0, 0, fireRate);
+	} else if (dropNumber == 2) {
+		makeDrop(0, 0, power);
+	} else if (dropNumber == 3) {
+		makeDrop(0, 0, shield);
 	}
 
 	var game_data = {
