@@ -232,7 +232,7 @@ function updateFrame(){
 	}
 
 	// Creating drops
-	var dropNumber = Math.round(Math.random()*100) + 1;
+	var dropNumber = Math.round(Math.random()*360) + 1;
 	if (dropNumber == 1) {
 		makeDrop(0, 0, "fireRate");
 		console.log("Firerate drop");
@@ -267,6 +267,7 @@ io.on('connection', function(socket){
 	console.log(randStartX + ", " + randStartY);
 
 	makePlayer(randStartX, randStartY, 0, socket.id, myColor);
+	makeDrop(randStartX, randStartY, "fireRate");
 
 	console.log("a user connected: " + socket.id);
 	socket.on('username', function(message) {
