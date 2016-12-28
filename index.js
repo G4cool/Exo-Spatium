@@ -234,13 +234,13 @@ function updateFrame(){
 	// Creating drops
 	var dropNumber = Math.round(Math.random()*100) + 1;
 	if (dropNumber == 1) {
-		makeDrop(0, 0, fireRate);
+		makeDrop(0, 0, "fireRate");
 		console.log("Firerate drop");
 	} else if (dropNumber == 2) {
-		makeDrop(0, 0, power);
+		makeDrop(0, 0, "power");
 		console.log("Power drop");
 	} else if (dropNumber == 3) {
-		makeDrop(0, 0, shield);
+		makeDrop(0, 0, "shield");
 		console.log("Shield drop");
 	}
 
