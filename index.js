@@ -8,6 +8,8 @@ var clientNum = 0;
 var players = [];
 var playersForKillCounter = [];
 
+var pickups = [];
+
 var mouseX = 0;
 var mouseY = 0;
 var slope = 0;
@@ -92,13 +94,23 @@ function makePlayer(startX, startY, startRotation, mySocketId, color) {
 				mouseX:mouseX,
 				mouseY:mouseY,
 				rotation:player.rotation,
-				time: 0
+				time:0
 			}
 			this.bullets.push(bullet);
 		}
 	}
 	players.push(player);
 	playersForKillCounter.push(player);
+}
+
+function makePickup(startX, startY, image) {
+	var pickup = {
+		x:startX,
+		y:startY,
+		image:image,
+		time:0
+	}
+	pickups.push(pickup);
 }
 
 function getPlayerById(current_socket_id){
