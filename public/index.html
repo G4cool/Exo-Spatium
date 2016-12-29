@@ -540,14 +540,18 @@
 				var myXDistFromCenterOfMinimap;
 				var myYDistFromCenterOfMinimap;
 
-				//ctx.fillStyle = "#FFFB0D";
+				ctx.fillStyle = "#FFFB0D";
 				//ctx.fillRect(20,20,100,100);
 				//ctx.fillRect((window.innerWidth + 20)/2,(window.innerHeight + 20)/2,20,20);
 				//ctx.fillRect((window.innerWidth+window.innerHeight)/2, window.innerHeight, window.innerHeight, window.innerHeight);
-				//var thingWidth = 20;
-				//var thingHeight = 20;
+				var thingWidth = 20;
+				var thingHeight = 20;
+				//var thingWidth = window.innerHeight;
+				//var thingHeight = window.innerHeight;
 				//console.log("window height: " + window.innerHeight);
-				//ctx.fillRect((window.innerWidth - thingWidth)/2,(window.innerHeight - thingHeight)/2,thingWidth,thingHeight);
+				ctx.fillRect((window.innerWidth - thingWidth)/2,(window.innerHeight - thingHeight)/2,thingWidth,thingHeight);
+
+				//ctx.drawImage(testingSquareImg, ((window.innerWidth - testingSquareImg.width)/2), ((window.innerHeight - testingSquareImg.height)/2));
 
 			    if (index == myIndex) {
 			    	ctx.save();
@@ -557,22 +561,26 @@
 					var myXDistFromCenterOfMinimap = minimapXCenter + x/500;
 					var myYDistFromCenterOfMinimap = minimapYCenter + y/500;
 
-			    	ctx.translate((window.innerWidth/2 + shipImg.width/2), (window.innerHeight/2 + shipImg.height/2));
-			    	//ctx.translate((window.innerWidth/2 + testingSquareImg.width/2), (window.innerHeight/2 + testingSquareImg.height/2));
+					///*
+			    	//ctx.translate((window.innerWidth/2 + shipImg.width/2), (window.innerHeight/2 + shipImg.height/2));
+			    	//ctx.translate((window.innerWidth/2 - testingSquareImg.width/2), (window.innerHeight/2 - testingSquareImg.height/2));
+			    	ctx.translate((window.innerWidth/2), (window.innerHeight/2));
 
 					angle = -Math.atan2((window.innerWidth/2 - mouseX),(window.innerHeight/2 - mouseY));
 
 					ctx.rotate(angle);
 
-					ctx.translate(-(window.innerWidth/2 + shipImg.width/2), -(window.innerHeight/2 + shipImg.height/2));
-					//ctx.translate(-(window.innerWidth/2 + testingSquareImg.width/2), -(window.innerHeight/2 + testingSquareImg.height/2));
+					//ctx.translate(-(window.innerWidth/2 + shipImg.width/2), -(window.innerHeight/2 + shipImg.height/2));
+					//ctx.translate(-(window.innerWidth/2 - testingSquareImg.width/2), -(window.innerHeight/2 - testingSquareImg.height/2));
+					ctx.translate(-(window.innerWidth/2), -(window.innerHeight/2));
+					//*/
 
 			    	myX = x;
 			    	myY = y;
 			    	myXFromCenter = (window.innerWidth/2) - x;
 			    	myYFromCenter = (window.innerHeight/2) - y;
-					ctx.drawImage(shipImg, (window.innerWidth/2), (window.innerHeight/2));
-					//ctx.drawImage(testingSquareImg, (window.innerWidth/2), (window.innerHeight/2));
+					//ctx.drawImage(shipImg, (window.innerWidth/2), (window.innerHeight/2));
+					ctx.drawImage(testingSquareImg, ((window.innerWidth - testingSquareImg.width)/2), ((window.innerHeight - testingSquareImg.height)/2));
 
 					ctx.restore();
 
