@@ -635,13 +635,13 @@
 					angle = -Math.atan2((window.innerWidth/2 - mouseX),(window.innerHeight/2 - mouseY));
 					//ctx.translate((bullet.x + myBulletXFromCenter + shipImg.width/2 - laserImg.width/2), (bullet.y + myBulletYFromCenter + shipImg.height/2 - laserImg.height/2));
 					//ctx.translate((bullet.x - laserImg.width/2 - playerX + window.innerWidth/2), (bullet.y - laserImg.height/2 - playerY + window.innerHeight/2));
-					ctx.translate((window.innerWidth/2), (window.innerHeight/2));
+					ctx.translate((bullet.x - playerX + window.innerWidth/2), (bullet.y - playerY + window.innerHeight/2));
 
 					ctx.rotate(rotation);
 					//console.log("rotation: " + rotation);
 					//ctx.translate(-(bullet.x + myBulletXFromCenter + shipImg.width/2 - laserImg.width/2), -(bullet.y + myBulletYFromCenter + shipImg.height/2 - laserImg.height/2));
 					//ctx.translate(-(bullet.x - laserImg.width/2 - playerX + window.innerWidth/2), -(bullet.y - laserImg.height/2 - playerY + window.innerHeight/2));
-					ctx.translate(-(window.innerWidth/2), -(window.innerHeight/2));
+					ctx.translate(-(bullet.x - playerX + window.innerWidth/2), -(bullet.y - playerY + window.innerHeight/2));
 
 					//ctx.drawImage(laserImg, (bullet.x + myBulletXFromCenter + shipImg.width/2), (bullet.y + myBulletYFromCenter + shipImg.height/2));
 					ctx.drawImage(laserImg, (bullet.x - laserImg.width/2 - playerX + window.innerWidth/2), (bullet.y - laserImg.height/2 - playerY + window.innerHeight/2));
